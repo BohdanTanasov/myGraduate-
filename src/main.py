@@ -1,4 +1,4 @@
-from djitellopy import Tello
+from djitellopys import Tello
 import cv2
 import pygame
 import queue
