@@ -91,7 +91,7 @@ class Actions():
         self.yaw_pid = PID(0.1, 0.00001, 0.001)
         self.v_pid = PID(0.5, 0.00001, 0.0001)
         self.vz_pid = PID(0.8, 0.00001, 0.0001)
-        self.TargetPos = np.array([[0., 0., 1., 0.]])
+        self.TargetPos = np.array([[0.2, 0.2, 2., 0.]])
 
         # for aruco markers
         self.markerEdge = MARKER_SIDE  # ArUco marker edge length in meters

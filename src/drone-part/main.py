@@ -100,7 +100,7 @@ class FrontEnd(object):
 
         should_stop = False
         while not should_stop:
-            img=cv2.resize(frame_read.frame, (960,720))
+            img=cv2.flip(cv2.resize(frame_read.frame, (960,720)), 0)
 
             pitch = self.tello.get_state_field('pitch')
             roll = self.tello.get_state_field('roll')
@@ -157,14 +157,14 @@ class FrontEnd(object):
         """ Update velocities based on key pressed
         Arguments:
             key: pygame key
-        基于键的按下上传各个方向的速度
+        基于键的按下上传各个方向的速度t
         参数：
             key：pygame事件循环中的键事件
         """
         if key == pygame.K_b:  # set yaw clockwise velocity
             self.left_right_velocity = int(self.directions[0])
-            self.for_back_velocity = int(self.directions[1])
-            self.up_down_velocity = int(self.directions[2])
+            self.for_back_velocity = int(self.directions[2])
+            self.up_down_velocity = int(self.directions[1])
             self.yaw_velocity = int(self.directions[3])
         elif key == pygame.K_UP:  # set forward velocity
             self.for_back_velocity = S
