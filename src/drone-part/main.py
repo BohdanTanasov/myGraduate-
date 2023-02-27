@@ -6,6 +6,24 @@ import numpy as np
 import threading
 import time
 from actions import Actions
+import socketio
+
+print(socketio)
+import json
+
+# Initialize SocketIO client
+sio = socketio.Client()
+
+
+# Listen for commands from Node.js app
+@sio.event()
+def send(data):
+    print(f"Received command for drone {data}")
+
+@sio.event()
+def connect():
+    print(f"Received command for drone")
+
 
 # Speed of the drone
 # 无人机的速度
@@ -15,6 +33,8 @@ S = 60
 # pygame窗口显示的帧数
 # 较低的帧数会导致输入延迟，因为一帧只会处理一次输入信息
 FPS = 120
+
+
 
 
 class FrontEnd(object):
@@ -91,6 +111,12 @@ class FrontEnd(object):
         self.tello.connect()
         self.tello.set_speed(self.speed)
 
+
+
+        # Connect to Node.js server
+        sio.connect('http://localhost:3000')
+
+
         # In case streaming is on. This happens when we quit this program without the escape key.
         # 防止视频流已开启。这会在不使用ESC键退出的情况下发生。
         self.tello.streamoff()
@@ -113,6 +139,10 @@ class FrontEnd(object):
                 img = self.actions.calibrator(img)
             # Detect ArUco markers
             img, directions = self.actions.aruco(img, self.getPoints, self.resetPoints, self.angles_tof)
+            # print(type(directions))
+            # print({'state': directions})
+            # print({'state': json.dumps(directions.tolist())})
+            sio.emit('drone-state', {'state': directions if type(directions) == list else directions.tolist()})
 
             self.directions = directions
 
