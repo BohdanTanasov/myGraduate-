@@ -1,39 +1,19 @@
-import {useEffect, useState} from "react";
-import logo from './logo.svg';
+import { Container } from '@mui/material';
 import './App.css';
-import io from 'socket.io-client';
+import Component from './components/component';
+import { SocketProvider } from './socket-context';
 
-const socket = io('http://localhost:3000');
+// const socket = io('http://localhost:3000');
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    socket.on('drone-state-web', (data) => {
-      console.log(data)
-      setMessage(data);
-    });
-
-    // return () => {
-    //   socket.disconnect();
-    // };
-  }, []);
-
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        {/*{message}*/}
-        <button onClick={() => {
-          socket.emit('test-from-web-app', 'Hello from the client!');
-        }
-        }>Test</button>
-      </header>
-    </div>
+    <SocketProvider>
+      <div className="App">
+        <Container sx={{ py: 3 }}>
+          <Component />
+        </Container>
+      </div>
+    </SocketProvider>
   );
 }
 

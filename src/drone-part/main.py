@@ -18,6 +18,9 @@ sio = socketio.Client()
 # Listen for commands from Node.js app
 @sio.event()
 def send(data):
+    frontend_instance = FrontEnd()
+
+    frontend_instance.keyup(116)
     print(f"Received command for drone {data}")
 
 @sio.event()
@@ -25,13 +28,12 @@ def connect():
     print(f"Received command for drone")
 
 
+# ID number of drone
+droneId = 0
 # Speed of the drone
-# 无人机的速度
 S = 60
 # Frames per second of the pygame window display
 # A low number also results in input lag, as input information is processed once per frame.
-# pygame窗口显示的帧数
-# 较低的帧数会导致输入延迟，因为一帧只会处理一次输入信息
 FPS = 120
 
 
@@ -84,6 +86,7 @@ class FrontEnd(object):
 
         self.calibrate = False
         self.directions = np.zeros(4)
+        self.cam_translation = [0,0,0]
 
         # Drone velocities between -100~100
         # 无人机各方向速度在-100~100之间
@@ -133,17 +136,18 @@ class FrontEnd(object):
             yaw = self.tello.get_state_field('yaw')
             tof = self.tello.get_state_field('tof')
             self.angles_tof = [pitch, roll, yaw, tof]
+            cam_translation = [0,0,0]
 
             # Calibrate drone camera
             if self.calibrate:
                 img = self.actions.calibrator(img)
             # Detect ArUco markers
-            img, directions = self.actions.aruco(img, self.getPoints, self.resetPoints, self.angles_tof)
+            img, directions, cam_translation = self.actions.aruco(img, self.getPoints, self.resetPoints, self.angles_tof)
+            print(cam_translation)
             # print(type(directions))
             # print({'state': directions})
             # print({'state': json.dumps(directions.tolist())})
-            sio.emit('drone-state', {'state': directions if type(directions) == list else directions.tolist()})
-
+            sio.emit('drone-state', {'drone_id': droneId, 'state': self.tello.get_current_state(), 'coordinates': cam_translation if type(cam_translation) == list else cam_translation.tolist()})
             self.directions = directions
 
             for event in pygame.event.get():
@@ -151,11 +155,11 @@ class FrontEnd(object):
                     self.update()
                 elif event.type == pygame.QUIT:
                     should_stop = True
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        should_stop = True
-                    else:
-                        self.keydown(event.key)
+                # elif event.type == pygame.KEYDOWN:
+                #     if event.key == pygame.K_ESCAPE:
+                #         should_stop = True
+                #     else:
+                #         self.keydown(event.key)
                 elif event.type == pygame.KEYUP:
                     self.keyup(event.key)
 
@@ -184,6 +188,7 @@ class FrontEnd(object):
         self.tello.end()
 
     def keydown(self, key):
+        print(key)
         """ Update velocities based on key pressed
         Arguments:
             key: pygame key
@@ -221,6 +226,7 @@ class FrontEnd(object):
             # print(self.directions)
 
     def keyup(self, key):
+        print(key)
         """ Update velocities based on key released
         Arguments:
             key: pygame key
@@ -228,20 +234,20 @@ class FrontEnd(object):
         参数：
             key：pygame事件循环中的键事件
         """
-        if key == pygame.K_UP or key == pygame.K_DOWN:  # set zero forward/backward velocity
-            self.for_back_velocity = 0
-        elif key == pygame.K_LEFT or key == pygame.K_RIGHT:  # set zero left/right velocity
-            self.left_right_velocity = 0
-        elif key == pygame.K_w or key == pygame.K_s:  # set zero up/down velocity
-            self.up_down_velocity = 0
-        elif key == pygame.K_a or key == pygame.K_d:  # set zero yaw velocity
-            self.yaw_velocity = 0
-        elif key == pygame.K_t:  # takeoff
-            self.tello.takeoff()
-            self.send_rc_control = True
-        elif key == pygame.K_l:  # land
-            not self.tello.land()
-            self.send_rc_control = False
+        # if key == pygame.K_UP or key == pygame.K_DOWN:  # set zero forward/backward velocity
+        #     self.for_back_velocity = 0
+        # elif key == pygame.K_LEFT or key == pygame.K_RIGHT:  # set zero left/right velocity
+        #     self.left_right_velocity = 0
+        # elif key == pygame.K_w or key == pygame.K_s:  # set zero up/down velocity
+        #     self.up_down_velocity = 0
+        # elif key == pygame.K_a or key == pygame.K_d:  # set zero yaw velocity
+        #     self.yaw_velocity = 0
+        # elif key == pygame.K_t:  # takeoff
+        #     self.tello.takeoff()
+        #     self.send_rc_control = True
+        # elif key == pygame.K_l:  # land
+        #     not self.tello.land()
+        #     self.send_rc_control = False
 
     def update(self):
         """ Update routine. Send velocities to Tello.
