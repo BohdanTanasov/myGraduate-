@@ -295,6 +295,7 @@ class Actions():
         corners, ids, _ = cv2.aruco.detectMarkers(gray, aruco_dict, parameters=parameters)
 
         directions = np.zeros(4)
+        cam_translation = [0,0,0]
 
 
         # list for all currently seen IDs
@@ -326,8 +327,8 @@ class Actions():
                 R_matrix_transpose = np.array(R_matrix).T
                 cam_translation = np.matmul(-R_matrix_transpose, tvec[0])
 
-                print(tvec[0], rvec[0])
-                print(cam_translation)
+                # print(tvec[0], rvec[0])
+                # print(cam_translation)
 
                 # only selected vectors from now
                 self.last_marker_pos = tvec[0][0]
@@ -369,6 +370,6 @@ class Actions():
                 else:
                     self.dir_queue.put([0, 0, 0, -self.speed*2])
 
-        return frame, directions
+        return frame, directions, cam_translation
 
 
