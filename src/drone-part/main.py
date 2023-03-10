@@ -13,15 +13,21 @@ import json
 
 # Initialize SocketIO client
 sio = socketio.Client()
+tello = Tello()
 
 
 # Listen for commands from Node.js app
 @sio.event()
 def send(data):
-    frontend_instance = FrontEnd()
-
-    frontend_instance.keyup(116)
-    print(f"Received command for drone {data}")
+    # frontend_instance = FrontEnd()
+    #
+    # frontend_instance.keyup(116)
+    print(data)
+    if data['command'] == 'take-off':
+        tello.takeoff()
+    elif data['command'] == 'land':
+            tello.land()
+    # print(f"Received command for drone {data}")
 
 @sio.event()
 def connect():
@@ -154,6 +160,7 @@ class FrontEnd(object):
                 if event.type == pygame.USEREVENT + 1:
                     self.update()
                 elif event.type == pygame.QUIT:
+                    self.tello.land()
                     should_stop = True
                 # elif event.type == pygame.KEYDOWN:
                 #     if event.key == pygame.K_ESCAPE:

@@ -19,15 +19,13 @@ import { useContext, useEffect, useState } from 'react';
 import BatteryGauge from 'react-battery-gauge';
 import Plot from 'react-plotly.js';
 import { SocketContext } from '../socket-context';
-import DroneDisabled from './../assets/drone-disabled.svg';
 import Drone from './../assets/drone.svg';
-import WestIcon from '@mui/icons-material/West';
-import SouthIcon from '@mui/icons-material/South';
-import EastIcon from '@mui/icons-material/South';
-import NorthIcon from '@mui/icons-material/South';
-const NavigationButton = ({ direction }) => {
+import DroneDisabled from './../assets/drone-disabled.svg';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import FlightLandIcon from '@mui/icons-material/FlightLand';
+const NavigationButton = ({ direction, icon, onClick }) => {
   return (
-    <IconButton sx={{ background: '#73B1FF' }}>
+    <IconButton sx={{ background: '#73B1FF' }} onClick={onClick}>
       <Icon
         fontSize={'large'}
         sx={{
@@ -39,7 +37,7 @@ const NavigationButton = ({ direction }) => {
           },
         }}
       >
-        <NavigationIcon />
+        {icon}
       </Icon>
     </IconButton>
   );
@@ -97,11 +95,12 @@ export const Component = () => {
     socket?.on('drone-state-web', (data) => {
       // console.log(data);
       // console.log(data);
+      console.log(data);
       setState(data);
     });
   }, []);
 
-  console.log(state[0].coordinates);
+  console.log(state);
 
   const result = [];
 
@@ -112,8 +111,6 @@ export const Component = () => {
     }
     result.push(arr);
   }
-
-  console.log(result);
 
   return (
     <Grid container spacing={3}>
@@ -190,10 +187,10 @@ export const Component = () => {
       <Grid container>
         <Grid item container xs={12} md={4} px={15} justifyContent={'center'} alignContent={'center'}>
           <ControlBlock
-            firstElement={<NavigationButton direction={'top'} />}
-            secondElement={<NavigationButton direction={'left'} />}
-            thirdElement={<NavigationButton direction={'right'} />}
-            fourElement={<NavigationButton direction={'bottom'} />}
+            firstElement={<NavigationButton direction={'top'} icon={<NavigationIcon />} onClick={() => {}} />}
+            secondElement={<NavigationButton direction={'left'} icon={<NavigationIcon />} onClick={() => {}} />}
+            thirdElement={<NavigationButton direction={'right'} icon={<NavigationIcon />} onClick={() => {}} />}
+            fourElement={<NavigationButton direction={'bottom'} icon={<NavigationIcon />} onClick={() => {}} />}
           />
         </Grid>
         <Grid item container xs={12} md={4}>
@@ -201,10 +198,26 @@ export const Component = () => {
         </Grid>
         <Grid item container xs={12} md={4} px={15} justifyContent={'center'} alignContent={'center'}>
           <ControlBlock
-            firstElement={<NavigationButton direction={'top'} />}
-            secondElement={<NavigationButton direction={'left'} />}
-            thirdElement={<NavigationButton direction={'right'} />}
-            fourElement={<NavigationButton direction={'bottom'} />}
+            firstElement={
+              <NavigationButton
+                direction={'top'}
+                icon={<FlightTakeoffIcon />}
+                onClick={() => {
+                  socket?.emit('test-from-web-app', { drone: drone, command: 'take-off' });
+                }}
+              />
+            }
+            secondElement={<NavigationButton direction={'bottom'} onClick={() => {}} />}
+            thirdElement={<NavigationButton direction={'right'} onClick={() => {}} />}
+            fourElement={
+              <NavigationButton
+                direction={'top'}
+                icon={<FlightLandIcon />}
+                onClick={() => {
+                  socket?.emit('test-from-web-app', { drone: drone, command: 'land' });
+                }}
+              />
+            }
           />
         </Grid>
       </Grid>
@@ -215,10 +228,10 @@ export const Component = () => {
           socket?.emit('test-from-web-app', 'Hello from the client!');
         }}
       >
-        Test
+        Tale Off
       </Button>
 
-      <Dialog open={false} maxWidth>
+      <Dialog open={true} maxWidth>
         <Plot
           data={[
             {
