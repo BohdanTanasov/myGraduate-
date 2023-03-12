@@ -1,0 +1,37 @@
+\babel@toc {slovak}{}\relax 
+\contentsline {section}{\hbox to\@tempdima {\hfil }Úvod}{1}{section*.6}%
+\contentsline {section}{\numberline {1}Formulácia úlohy}{2}{section.1}%
+\contentsline {section}{\numberline {2}Prehľad literatúry}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Optický princíp senzorov}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Vyhýbanie sa prekážkam a orientácia na základe obrazu z kamery}{5}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}S vylepšenou neurónovou sieťou}{5}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Princíp stereosnímania}{7}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Na základe pohyblivého obrazu kamery}{9}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Určovanie polohy pomocou značiek}{9}{subsubsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.3}WebSocket}{9}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Definícia problému prenasledovania koristi a metódy jeho realizácie}{10}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Analýza problému}{10}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Riadenie koristi}{11}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Popis samotných blokov}{12}{subsubsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.3}Režimy navigácie}{13}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Režim detekcie koristi}{13}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Režim prenasledovania a navigácie}{17}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Režim znehybnenia (chytenia) koristi}{20}{subsubsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.4}Výber vhodnej metódy robotickej kooperácie}{21}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Centralizované vs. decentralizované}{22}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Systém spätnej väzby(Closed-Loop Control System)}{22}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Deliberatívne vs. reaktívne riadenie}{23}{subsubsection.3.4.3}%
+\contentsline {section}{\numberline {4}Simulačné experimenty}{24}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Prehľad a príprava prostredia}{24}{subsection.4.1}%
+\contentsline {paragraph}{Simulátor robotov Webots \citep {webots}.}{24}{section*.7}%
+\contentsline {paragraph}{Vlastnosti Webots-u}{24}{section*.8}%
+\contentsline {paragraph}{Výskumné oblasti Webots-u.}{24}{section*.9}%
+\contentsline {paragraph}{Simulácia vo Webots-e.}{25}{section*.10}%
+\contentsline {paragraph}{Programovací jazyk.}{25}{section*.11}%
+\contentsline {subsection}{\numberline {4.2}Ovládanie robota Koristi}{26}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Detekcia značiek}{28}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Navigácia pre systém viacerých robotov}{29}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Variácia uhlovej rýchlosti virtuálnej štruktúry}{30}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Výsledky experimentu: 3 roboty s dosiahnuteľnou virtuálnou štruktúrou }{32}{subsubsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.5}Proces prenasledovania}{34}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Z\'aver}{38}{section.5}%

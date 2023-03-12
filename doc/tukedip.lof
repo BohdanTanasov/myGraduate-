@@ -1,0 +1,21 @@
+\babel@toc {slovak}{}\relax 
+\contentsline {figure}{\numberline {2\,--\,1}{\ignorespaces Načítaný obraz (vľavo), skutočná mapa hĺbky na základe senzorov (vľavo uprostred) a napokon mapa hĺbky vytvorená pomocou Gaussovho modelu (vpravo uprostred) a Laplaceovho modelu (vpravo)}}{6}{figure.2.1}%
+\contentsline {figure}{\numberline {2\,--\,2}{\ignorespaces Faktory zohľadňované pri monokulárnom vnímaní hĺbky}}{7}{figure.2.2}%
+\contentsline {figure}{\numberline {3\,--\,1}{\ignorespaces Architektúra systému riadenia robotov.}}{12}{figure.3.1}%
+\contentsline {figure}{\numberline {3\,--\,2}{\ignorespaces Ilustrácia geometrie problému sledovania a navigácie.}}{13}{figure.3.2}%
+\contentsline {figure}{\numberline {3\,--\,3}{\ignorespaces Schéma modelovania obrázkov so značkami ArUco.}}{15}{figure.3.3}%
+\contentsline {figure}{\numberline {3\,--\,4}{\ignorespaces Určenie polohy robota vzhľadom na značku.}}{17}{figure.3.4}%
+\contentsline {figure}{\numberline {3\,--\,5}{\ignorespaces Určenie globálnej polohy robota pomocou polohy značky.}}{17}{figure.3.5}%
+\contentsline {figure}{\numberline {3\,--\,6}{\ignorespaces Režim detekcie koristi - schéma.}}{18}{figure.3.6}%
+\contentsline {figure}{\numberline {3\,--\,7}{\ignorespaces Režim sledovania a navigácii - schéma.}}{20}{figure.3.7}%
+\contentsline {figure}{\numberline {3\,--\,8}{\ignorespaces Režim zatváranie koristi - schéma.}}{21}{figure.3.8}%
+\contentsline {figure}{\numberline {3\,--\,9}{\ignorespaces Hybridná architektúra riadenia.}}{22}{figure.3.9}%
+\contentsline {figure}{\numberline {3\,--\,10}{\ignorespaces Systém spätnej väzby.}}{23}{figure.3.10}%
+\contentsline {figure}{\numberline {4\,--\,1}{\ignorespaces Ilustrované cesty, použitie na testovanie.}}{27}{figure.4.1}%
+\contentsline {figure}{\numberline {4\,--\,2}{\ignorespaces Závislosť vplyvu veľkosti oblasti značky na chybe pri zisťovaní jej polohy.}}{28}{figure.4.2}%
+\contentsline {figure}{\numberline {4\,--\,3}{\ignorespaces Pravdepodobnosť detekcie značky v závislosti od jej oblasti na obrázku pre 3 rôzne uhly naklonenia: 0°, 45°, 70°.}}{29}{figure.4.3}%
+\contentsline {figure}{\numberline {4\,--\,4}{\ignorespaces Nie sú vynútené nežiaduce kmity dráhy robota prechodnej fázy.}}{30}{figure.4.4}%
+\contentsline {figure}{\numberline {4\,--\,5}{\ignorespaces Nežiaduce oscilácie dráhy robota, ak nie sú splnené predpokladané obmedzenia dynamického cieľa (ak $\theta _T > P$).}}{31}{figure.4.5}%
+\contentsline {figure}{\numberline {4\,--\,6}{\ignorespaces Trajektória robotov.}}{33}{figure.4.6}%
+\contentsline {figure}{\numberline {4\,--\,7}{\ignorespaces Zmena vzdialenosti $d_{S_i}$ medzi robotom i a zvoleným cieľom (i = 1..3).}}{33}{figure.4.7}%
+\contentsline {figure}{\numberline {4\,--\,8}{\ignorespaces Výsledky simulácie}}{35}{figure.4.8}%

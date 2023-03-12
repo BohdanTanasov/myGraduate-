@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: tukedip.aux
+A level-1 auxiliary file: uvod.aux
+A level-1 auxiliary file: formulacia.aux
+A level-1 auxiliary file: analyza.aux
+A level-1 auxiliary file: jadroprace.aux
+A level-1 auxiliary file: testing.aux
+A level-1 auxiliary file: zaver.aux
+The style file: ieeetr.bst
+Database file #1: refs.bib
+Warning--I didn't find a database entry for "citácia6"
+Warning--I didn't find a database entry for "citácia7"
+Warning--I didn't find a database entry for "citácia8"
+Warning--I didn't find a database entry for "citácia9"
+You've used 2 entries,
+            1876 wiz_defined-function locations,
+            500 strings with 3917 characters,
+and the built_in function-call counts, 524 in all, are:
+= -- 53
+> -- 15
+< -- 0
++ -- 6
+- -- 4
+* -- 35
+:= -- 74
+add.period$ -- 3
+call.type$ -- 2
+change.case$ -- 2
+chr.to.int$ -- 0
+cite$ -- 2
+duplicate$ -- 23
+empty$ -- 52
+format.name$ -- 4
+if$ -- 131
+int.to.chr$ -- 0
+int.to.str$ -- 2
+missing$ -- 1
+newline$ -- 10
+num.names$ -- 1
+pop$ -- 8
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 20
+stack$ -- 0
+substring$ -- 36
+swap$ -- 11
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 3
+width$ -- 3
+write$ -- 22
+(There were 4 warnings)

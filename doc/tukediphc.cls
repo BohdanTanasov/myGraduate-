@@ -196,8 +196,8 @@ given}}
 Študijný odbor:& \@odbor \\
 Školiace pracovisko:& \@katedra~(\@skratkakatedry) \\
 Školiteľ:& \@veduciprace \\
-% Konzultant:& \@konzultanta \\
-%\phantom{Konzultant:}& \@konzultantb
+Konzultant:& \@konzultanta \\
+\phantom{Konzultant:}& \@konzultantb
 \end{tabular}
 
 \vspace{2\baselineskip}
@@ -249,8 +249,8 @@ given}}
 		Študijný program:& \@specializacia \\
 		Mesto:& \@mesto \\
 		Vedúci práce: &	\@veduciprace \\
-		% Konzultant :& \@konzultanta \\
-%		& \@konzultantb \\
+		Konzultant :& \@konzultanta \\
+		& \@konzultantb \\
 		Dátum odovzdania:& \@datumodovzdania\\
 		Dátum obhajoby:& \@datumobhajoby \\
 		Kľúčové slová:& \@klucoveslova \\

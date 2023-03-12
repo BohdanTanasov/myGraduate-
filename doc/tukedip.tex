@@ -32,6 +32,11 @@
 \usepackage{dcolumn} % zarovnanie cisiel v tabulke podla des. ciarky
 \usepackage{hhline}
 \usepackage{amsmath,amsfonts,amssymb}
+
+\usepackage{indentfirst}
+\usepackage{parskip}
+\setlength{\parskip}{1em}
+
 \usepackage{nicefrac} % pekne zlomky
 \usepackage{upgreek} % napr. $\upmu\mathrm{m}$ pre mikrometer ...
 \usepackage[final]{showkeys}%color%notref%notcite%final
@@ -67,15 +72,15 @@ pdfstartpage=1]{hyperref}
 baseurl={http://www.tuke.sk/sevcovic},
 pdfcreator={pdfcsLaTeX},
 pdfkeywords={Multi-robot navigation, target tracking, hunt-ing behavior, cooperative collision avoidance},
-pdftitle={Simulácia kooperácie multi-robotického systemu},
+pdftitle={Využitie prostriedkov internetu vozidiel v navigácii mobilných robotov},
 pdfauthor={Bohdan Tanasov},
-pdfsubject={Bakalárska práca}
+pdfsubject={Diplomová práca}
 } 
 %% nehodiace zakomentujte !
-\dippraca{Bakalárska práca}
+\dippraca{Diplomová práca}
 %\bakpraca{Bakalárska práca}
 %%
-\nazov{Simulácia kooperácie multi-robotického systému}
+\nazov{Využitie prostriedkov internetu vozidiel v navigácii mobilných robotov}
 %% ked praca nema 'podnazov' zakomentujte nasledujuci riadok
 %% alebo polozku nechajte prazdnu
 \podnazov{}
@@ -84,8 +89,8 @@ pdfsubject={Bakalárska práca}
 \title{Simulation of Cooperation for a Multi-Robotic System}
 \autor{Bohdan Tanasov}
 \veduciprace{doc. Dr. Ing.~Ján~Vaščák}
-% \konzultanta{doc. Dr. Ing.~Ján~Vaščák}
-%\konzultantb{RNDr.~Marián~Čierny, DrSc.}
+\konzultanta{ing.~Dušan~Herich}
+% \konzultantb{RNDr.~Marián~Čierny, DrSc.}
 \titul{Bc}
 \univerzita{Technická univerzita v~Košiciach}
 \fakulta{Fakulta elektrotechniky a informatiky}
@@ -94,16 +99,17 @@ pdfsubject={Bakalárska práca}
 \skratkakatedry{KUI}
 \odbor{Informatika}
 \specializacia{Inteligentné systémy}
-\abstrakt{Hlavnou výzvou tohto projektu je efektívna a adaptívna koordinácia viacerých autonómnych mobilných robotov s menšími oneskoreniami.
-Práce možno rozdeliť do troch hlavných častí. Teoretické, v ktorom sa uvažuje o hlavných problémoch komunikácie, riadenia, výmeny informácií v systémoch s niekoľkými mobilnými robotmi. Praktické, ktoré popisuje podstatu projektu na dosiahnutie cieľa niekoľkými robotmi a tiež poskytuje schémy implementácie tohto projektu. A tretia časť popisuje experimenty, ktoré sa uskutočnili na testovanie každého z režimov prenasledovania.
-Podľa nášho názoru teda navrhovaný model poskytuje účinnú metódu na sledovanie cieľov pre aplikácie, ako sú sledovacie roboty, sledovanie ľudí a budovanie tímu.}
-\klucoveslova{Navigácia s viacerými robotmi, sledovanie cieľov, správanie pri love, simulácia}
-\abstrakte{The main challenge of this project is the efficient and adaptive coordination of multiple autonomous mobile robots with lower delays.
-The work can be divided into three main parts. Theoretical, in which the main problems of communication, control, information exchange in systems with several mobile robots are considered. Practical, which describes the essences of the project to achieve the goal by several robots, and also provides schemes for the implementation of this project. And the third part describes the experiments that were carried out to test each of the pursuit modes.
-In our opinion, the proposed model thus provides an effective method for tracking targets for applications such as tracking robots, tracking people, and team building.}
-\keywords{Multi-robot navigation, target tracking, hunting behavior, simulation}
-\datumodovzdania{28.~5.~2021}
-\datumobhajoby{20.~6.~2021}
+\abstrakt{Cieľom tejto práce bolo vyvinúť automatizovaný systém riadenia pre bezpilotné lietadlo, ktorý využíva zabudovanú kameru na navigáciu a zber údajov. Systém bol implementovaný pomocou programovacieho jazyka Python spolu s balíkom OpenCV pre algoritmy počítačového videnia a značkami ArUco pre merania, NodeJS a React. 
+Pomocou systému môžeme manipulovať s viacerými dronmi a so samostatným dronom z webovej stránky a môžeme vidieť údaje dronov a súradnice dronov v priestore pomocou značiek aruco.
+Na záver možno konštatovať, že systém úspešne dosiahol svoj cieľ, ktorým je adaptácia autonómneho navigačného systému pre bezpilotné lietadlá v interiéri. Následne spracované súbory údajov boli dostatočne dobre filtrované, aby sa mohli považovať za adekvátne merania. Program by sa mohol v budúcnosti vylepšiť tak, aby podporoval viac príkazov pre skupiny dronov, napr. postaviť kolo alebo iné postavy. Takýto systém sa dá použiť aj pre priemyselné bezpilotné lietadlá, kde sú polohy AR markerov vopred známe.}
+\abstrakte{The objective of this work was to develop an automated control system for an unmanned aircraft that uses an embedded camera for navigation and data collection. The system was implemented using the Python programming language along with the OpenCV package for computer vision algorithms and the ArUco tags for measurements, NodeJS and React. 
+Using the system, we can manipulate multiple drones and a single drone from a web page and can see the drone data and drone coordinates in space using aruco tags.
+In conclusion, the system has successfully achieved its goal of adapting an autonomous navigation system for drones indoors. The subsequently processed datasets were sufficiently well filtered to be considered as adequate measurements. The program could be improved in the future to support more commands for groups of drones, e.g., build a bike or other figures. Such a system could also be used for industrial drones where the positions of the AR markers are known in advance.}
+\keywords{UAV, autonomous navigation, AR marker, positioning, measurements}
+\klucoveslova{UAV, autonómna navigácia, AR marker, určovanie polohy, merania}
+
+\datumodovzdania{21.~4.~2023}
+\datumobhajoby{20.~5.~2023}
 \mesto{Košice}
 \pocetstran{\pageref{page:posledna}}
 \kategoria{Záverečná práca} 
@@ -150,7 +156,7 @@ In our opinion, the proposed model thus provides an effective method for trackin
 
 % Na tomto mieste bude vložené zadanie diplomovej práce
 % \zadanieprace{}
-\includepdf[pages=-]{zadavaci-list.png}
+\includepdf[pages=-]{zadavaci-list.pdf}
 
 \cestnevyhlasenie
 % Niektorí autori metodických príručiek o~záverečných prácach sa
@@ -165,7 +171,8 @@ Na záver musím svojim rodičom poďakovať za to, že mi počas rokov štúdia
 \kpodakovania
 
 \predhovor
-Účelom tejto práce je podrobne preskúmať niekoľko robotických systémov. Viaceré robotické systémy sú užitočné na vykonávanie úloh, ktoré by jeden robot ťažko splnil. V takom prípade je úlohou koordinovať niekoľko robotov v procese prenasledovania. Na prekonanie problémov, ktoré sa vyskytujú pri love, musí robot komunikovať. Roboty sú úplne autonómne a komunikujú bezdrôtovo. Cieľom projektu je demonštrovať užitočnosť koordinovaného správania v iných dôležitých aplikáciách. Získané praktické skúsenosti sa týkajú komunikácie, prideľovania úloh a učenia sa.
+Téma práce sa zaoberá využitím dronov Tello v skupinovej koordinovanej misii, kde bola navrhnutá a implementovaná webová aplikácia, ktorá umožňuje ovládanie viacerých dronov naraz. V práci je tiež popísaná implementácia systému, ktorý umožňuje sledovanie pozície dronov pomocou kamery a detekcie Aruco markerov.
+Cieľom tejto práce bolo ukázať, ako efektívne ovládať viacero dronov naraz pomocou jednoduchej webovej aplikácie a koordinovaného systému detekcie pozície dronov. V práci sa tiež zaoberáme riešeniami problémov pri použití viacerých dronov naraz a analyzujeme výsledky našich experimentov a testov.
 % Zvýšil sa záujem o výskum v systémoch zložených z viacerých autonómnych mobilných robotov vykazujúcich kooperatívne správanie. Konštruujú sa skupiny mobilných robotov s cieľom študovať také problémy, ako je skupinová architektúra, konflikt zdrojov, pôvod spolupráce, učenie sa a geometrické problémy. Doposiaľ bolo opísaných málo aplikácií kooperatívnej robotiky a teória podpory je stále v štádiu formovania. V tejto prace bol vytvorený multi-robotický projekt a diskutované problémy a variácie ich riešenia 
 \kpredhovoru
 
@@ -239,7 +246,7 @@ Na záver musím svojim rodičom poďakovať za to, že mi počas rokov štúdia
 % \include{prilohy}
 % %
 % \include{prilohaa}
-% %
+% % 
 % \include{prilohab}
 % %
 % \include{prilohac}
