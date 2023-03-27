@@ -1,21 +1,15 @@
 \babel@toc {slovak}{}\relax 
 \contentsline {figure}{\numberline {2\,--\,1}{\ignorespaces Načítaný obraz (vľavo), skutočná mapa hĺbky na základe senzorov (vľavo uprostred) a napokon mapa hĺbky vytvorená pomocou Gaussovho modelu (vpravo uprostred) a Laplaceovho modelu (vpravo)}}{6}{figure.2.1}%
 \contentsline {figure}{\numberline {2\,--\,2}{\ignorespaces Faktory zohľadňované pri monokulárnom vnímaní hĺbky}}{7}{figure.2.2}%
-\contentsline {figure}{\numberline {3\,--\,1}{\ignorespaces Architektúra systému riadenia robotov.}}{12}{figure.3.1}%
-\contentsline {figure}{\numberline {3\,--\,2}{\ignorespaces Ilustrácia geometrie problému sledovania a navigácie.}}{13}{figure.3.2}%
-\contentsline {figure}{\numberline {3\,--\,3}{\ignorespaces Schéma modelovania obrázkov so značkami ArUco.}}{15}{figure.3.3}%
-\contentsline {figure}{\numberline {3\,--\,4}{\ignorespaces Určenie polohy robota vzhľadom na značku.}}{17}{figure.3.4}%
-\contentsline {figure}{\numberline {3\,--\,5}{\ignorespaces Určenie globálnej polohy robota pomocou polohy značky.}}{17}{figure.3.5}%
-\contentsline {figure}{\numberline {3\,--\,6}{\ignorespaces Režim detekcie koristi - schéma.}}{18}{figure.3.6}%
-\contentsline {figure}{\numberline {3\,--\,7}{\ignorespaces Režim sledovania a navigácii - schéma.}}{20}{figure.3.7}%
-\contentsline {figure}{\numberline {3\,--\,8}{\ignorespaces Režim zatváranie koristi - schéma.}}{21}{figure.3.8}%
-\contentsline {figure}{\numberline {3\,--\,9}{\ignorespaces Hybridná architektúra riadenia.}}{22}{figure.3.9}%
-\contentsline {figure}{\numberline {3\,--\,10}{\ignorespaces Systém spätnej väzby.}}{23}{figure.3.10}%
-\contentsline {figure}{\numberline {4\,--\,1}{\ignorespaces Ilustrované cesty, použitie na testovanie.}}{27}{figure.4.1}%
-\contentsline {figure}{\numberline {4\,--\,2}{\ignorespaces Závislosť vplyvu veľkosti oblasti značky na chybe pri zisťovaní jej polohy.}}{28}{figure.4.2}%
-\contentsline {figure}{\numberline {4\,--\,3}{\ignorespaces Pravdepodobnosť detekcie značky v závislosti od jej oblasti na obrázku pre 3 rôzne uhly naklonenia: 0°, 45°, 70°.}}{29}{figure.4.3}%
-\contentsline {figure}{\numberline {4\,--\,4}{\ignorespaces Nie sú vynútené nežiaduce kmity dráhy robota prechodnej fázy.}}{30}{figure.4.4}%
-\contentsline {figure}{\numberline {4\,--\,5}{\ignorespaces Nežiaduce oscilácie dráhy robota, ak nie sú splnené predpokladané obmedzenia dynamického cieľa (ak $\theta _T > P$).}}{31}{figure.4.5}%
-\contentsline {figure}{\numberline {4\,--\,6}{\ignorespaces Trajektória robotov.}}{33}{figure.4.6}%
-\contentsline {figure}{\numberline {4\,--\,7}{\ignorespaces Zmena vzdialenosti $d_{S_i}$ medzi robotom i a zvoleným cieľom (i = 1..3).}}{33}{figure.4.7}%
-\contentsline {figure}{\numberline {4\,--\,8}{\ignorespaces Výsledky simulácie}}{35}{figure.4.8}%
+\contentsline {figure}{\numberline {2\,--\,3}{\ignorespaces Model virtuálnej kamery. (a) Model virtuálnej kamery systému stereovízie založeného na plochej prizme. (b) Modifikovaný model dierkovej virtuálnej kamery systému stereovízie založeného na voľnej prizme.}}{8}{figure.2.3}%
+\contentsline {figure}{\numberline {2\,--\,4}{\ignorespaces Vľavo: Tradičné stereofónne nastavenie predpokladá, že aspoň dva uhly pohľadu zachytávajú scénu v rovnakom čase. Vpravo: Uvažujeme o nastavení, pri ktorom sa kamera aj objekt pohybujú.}}{9}{figure.2.4}%
+\contentsline {figure}{\numberline {2\,--\,5}{\ignorespaces Pravdepodobnosť detekcie značky v závislosti od jej oblasti na obrázku pre 3 rôzne uhly naklonenia: 0°, 45°, 70°.}}{12}{figure.2.5}%
+\contentsline {figure}{\numberline {2\,--\,6}{\ignorespaces Závislosť vplyvu veľkosti oblasti značky na chybe pri zisťovaní jej polohy.}}{12}{figure.2.6}%
+\contentsline {figure}{\numberline {3\,--\,1}{\ignorespaces Obrázok dronu DJI Tello zobrazujúci jeho komponenty.}}{15}{figure.3.1}%
+\contentsline {figure}{\numberline {3\,--\,2}{\ignorespaces Schéma návrhu systému: Webová aplikácia vytvorená pomocou React komunikuje s backendovým serverom Node.js, ktorý posiela príkazy a prijíma telemetrické údaje z dronov pripojených k ASUS Tinkerboard.}}{17}{figure.3.2}%
+\contentsline {figure}{\numberline {3\,--\,3}{\ignorespaces Smery definované pri ovládaní dronu pomocou SDK.}}{22}{figure.3.3}%
+\contentsline {figure}{\numberline {3\,--\,4}{\ignorespaces Tradičná kalibrácia pomocou vzoru šachovnice. a) Rutiny OpenCV dokážu odhaliť všetky rohy šachovnice. b) Rohy nemožno priradiť k príslušným bodom na vzore šachovnice, ak vzor nie je úplne zachytený.}}{25}{figure.3.4}%
+\contentsline {figure}{\numberline {3\,--\,5}{\ignorespaces Schéma procesu kalibrácie.}}{25}{figure.3.5}%
+\contentsline {figure}{\numberline {3\,--\,6}{\ignorespaces Súradnicový systém kamery a značky interpretovaný programom OpenCV.}}{30}{figure.3.6}%
+\contentsline {figure}{\numberline {3\,--\,7}{\ignorespaces Hlavné nápravy lietadla podľa normy DIN 9300.}}{35}{figure.3.7}%
+\contentsline {figure}{\numberline {3\,--\,8}{\ignorespaces Interpretácia vektora natočenia Rodriguesovej osi a uhla.}}{36}{figure.3.8}%

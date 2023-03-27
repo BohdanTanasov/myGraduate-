@@ -95,7 +95,7 @@ export const Component = () => {
     socket?.on('drone-state-web', (data) => {
       // console.log(data);
       // console.log(data);
-      console.log(data);
+      console.log('sdfdsf');
       setState(data);
     });
   }, []);
@@ -231,7 +231,7 @@ export const Component = () => {
         Tale Off
       </Button>
 
-      <Dialog open={true} maxWidth>
+      <Dialog open={false} maxWidth>
         <Plot
           data={[
             {

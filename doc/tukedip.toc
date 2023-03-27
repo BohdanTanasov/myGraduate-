@@ -7,31 +7,36 @@
 \contentsline {subsubsection}{\numberline {2.2.1}S vylepšenou neurónovou sieťou}{5}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2}Princíp stereosnímania}{7}{subsubsection.2.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.3}Na základe pohyblivého obrazu kamery}{9}{subsubsection.2.2.3}%
-\contentsline {subsubsection}{\numberline {2.2.4}Určovanie polohy pomocou značiek}{9}{subsubsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.3}WebSocket}{9}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Definícia problému prenasledovania koristi a metódy jeho realizácie}{10}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Analýza problému}{10}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Riadenie koristi}{11}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Popis samotných blokov}{12}{subsubsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.3}Režimy navigácie}{13}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Režim detekcie koristi}{13}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Režim prenasledovania a navigácie}{17}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Režim znehybnenia (chytenia) koristi}{20}{subsubsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.4}Výber vhodnej metódy robotickej kooperácie}{21}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Centralizované vs. decentralizované}{22}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}Systém spätnej väzby(Closed-Loop Control System)}{22}{subsubsection.3.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.3}Deliberatívne vs. reaktívne riadenie}{23}{subsubsection.3.4.3}%
-\contentsline {section}{\numberline {4}Simulačné experimenty}{24}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Prehľad a príprava prostredia}{24}{subsection.4.1}%
-\contentsline {paragraph}{Simulátor robotov Webots \citep {webots}.}{24}{section*.7}%
-\contentsline {paragraph}{Vlastnosti Webots-u}{24}{section*.8}%
-\contentsline {paragraph}{Výskumné oblasti Webots-u.}{24}{section*.9}%
-\contentsline {paragraph}{Simulácia vo Webots-e.}{25}{section*.10}%
-\contentsline {paragraph}{Programovací jazyk.}{25}{section*.11}%
-\contentsline {subsection}{\numberline {4.2}Ovládanie robota Koristi}{26}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Detekcia značiek}{28}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Navigácia pre systém viacerých robotov}{29}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Variácia uhlovej rýchlosti virtuálnej štruktúry}{30}{subsubsection.4.4.1}%
-\contentsline {subsubsection}{\numberline {4.4.2}Výsledky experimentu: 3 roboty s dosiahnuteľnou virtuálnou štruktúrou }{32}{subsubsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.5}Proces prenasledovania}{34}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Z\'aver}{38}{section.5}%
+\contentsline {subsubsection}{\numberline {2.2.4}Určovanie polohy pomocou značiek}{10}{subsubsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.3}WebSocket}{13}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Design}{15}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Výber dronu}{15}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Programovací jazyk a súbor nástrojov}{16}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Ako ovládať dron tello}{18}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Umiestnenie dronu}{23}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Používanie značkovačov aruco}{24}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Pravidlá umiestňovania značiek}{26}{subsubsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.5}Prvé testy polohovania pomocou značiek}{27}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Vyhodnotenie testu a očakávania od systému}{28}{subsubsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.6}Princíp, spresnenie a robustnosť polohovania}{29}{subsection.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.1}Perspektívna projekcia, transformácia pnp}{30}{subsubsection.3.6.1}%
+\contentsline {subsubsection}{\numberline {3.6.2}Konvencie merania}{33}{subsubsection.3.6.2}%
+\contentsline {subsubsection}{\numberline {3.6.3}Konvencie používané v opencv}{35}{subsubsection.3.6.3}%
+\contentsline {subsubsection}{\numberline {3.6.4}Prevod polohy kamery do globálneho súradnicového systému}{37}{subsubsection.3.6.4}%
+\contentsline {subsection}{\numberline {3.7}Webové sokety s komunikáciou s dronom}{38}{subsection.3.7}%
+\contentsline {subsubsection}{\numberline {3.7.1}Architektúra}{39}{subsubsection.3.7.1}%
+\contentsline {subsubsection}{\numberline {3.7.2}Komunikačný protokol}{39}{subsubsection.3.7.2}%
+\contentsline {subsubsection}{\numberline {3.7.3}Implementácia}{41}{subsubsection.3.7.3}%
+\contentsline {section}{\numberline {4}Implementácia projektu}{42}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Prehľad štruktúry programov}{42}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Programy, ktoré ovládajú dron}{42}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Programy, ktoré spracúvajú obrázky}{42}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Programy na spracovanie údajov}{42}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Programy, ktoré riadia drony}{42}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Webová aplikácia}{42}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Simulačné experimenty}{43}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Merania so zachytávaním pohybu}{43}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Predbežné testy}{43}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Vyrovnanie systémov, kalibrácia}{43}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Porovnanie meraní, priradenie značiek ArUco Video vyhodnotenie meraní}{43}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Z\'aver}{44}{section.6}%
