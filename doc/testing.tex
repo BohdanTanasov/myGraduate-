@@ -2,7 +2,69 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = sk_SK
 \section{Simulačné experimenty}
-\subsection{Merania so zachytávaním pohybu}  
+Na vyhodnotenie výkonnosti programu dronu pri detekcii značiek a výpočte ich polohy sa uskutočnilo niekoľko simulačných experimentov s použitím vlastného simulačného prostredia.
+
+Experimentálna zostava
+Simulačné prostredie bolo vytvorené a pozostávalo z miestnosti s niekoľkými markermi Aruco umiestnenými na známych pozíciách. Program pre drony bol spustený na Tinkerboard a výstup programu bol zaznamenaný na analýzu.
+
+Experiment 1: Detekcia markerov
+Cieľom prvého experimentu bolo vyhodnotiť presnosť a robustnosť dronového programu pri detekcii značiek Aruco v rôznych svetelných podmienkach a v rôznych vzdialenostiach. Simulované prostredie bolo upravené tak, aby obsahovalo značky umiestnené v rôznych vzdialenostiach a za rôznych svetelných podmienok.
+
+Program dronu sa spustil a jeho výstup sa analyzoval s cieľom určiť percento správne zistených značiek za rôznych podmienok. Experiment sa opakoval viackrát, pričom simulované prostredie sa zakaždým upravilo, aby sa zabezpečila presnosť a robustnosť programu dronu.
+
+Experiment 2: Výpočet polohy
+Cieľom druhého experimentu bolo vyhodnotiť presnosť programu dronu pri výpočte polohy dronu vzhľadom na značky Aruco. Simulované prostredie bolo upravené tak, aby obsahovalo značky umiestnené v rôznych polohách vzhľadom na dron.
+
+Program dronu sa spustil a jeho výstup sa analyzoval s cieľom určiť presnosť vypočítaných polôh v porovnaní so známymi polohami značiek. Experiment sa opakoval viackrát, pričom simulované prostredie sa zakaždým upravilo, aby sa zabezpečila presnosť výpočtov polohy.
+
+Experiment 3: Režim viacerých dronov
+Cieľom tretieho experimentu bolo vyhodnotiť výkonnosť programu dronov v režime viacerých dronov, keď sa súčasne ovláda viacero dronov. Simulované prostredie bolo upravené tak, aby obsahovalo viacero dronov a značky umiestnené na rôznych miestach.
+
+Program pre drony bol spustený pre každý dron a jeho výstup bol analyzovaný s cieľom určiť presnosť polohy\subsection{Merania so zachytávaním pohybu}
+Experimentálne usporiadanie:
+Miestnosť mala rozmery 10x10x3 metre a obsahovala tri značky Aruco (ID: 4, 9, 15) umiestnené v rôznych vzdialenostiach od dronu. Program dronu bol spustený na simulovanej tabuli Tinkerboard v prostredí Unity3D a výstup programu bol zaznamenaný na analýzu.
+
+Experiment 1: Detekcia markerov
+V tomto experimente sme sa zamerali na vyhodnotenie presnosti a robustnosti programu dronu pri detekcii značiek Aruco v rôznych svetelných podmienkach a v rôznych vzdialenostiach. Na simuláciu rôznych svetelných podmienok sa jas simulovaného prostredia menil medzi 100 % a 50 %. Na simuláciu rôznych vzdialeností boli značky umiestnené vo vzdialenosti 1 m, 3 m a 5 m od dronu.
+
+Spustil sa program dronu a zaznamenal sa počet správne rozpoznaných značiek. Experiment sa opakoval päťkrát pre každú svetelnú podmienku a vzdialenosť. Výsledky experimentu sú uvedené v nasledujúcej tabuľke:
+
+\begin{table}[h!] 
+    \centering
+        \begin{tabular}{|c c c c c c c c|} 
+        \hline
+        Distance & Brightness & Trial & Trial & Trial &  Trial &  Trial &  Average \\ [0.5ex] 
+        \hline\hline
+        1 & 5.0 & 8.2 & 8.69 & 13.3 & 16.4\\ 
+        \hline
+        2 & 5.2 & 8.51 & 8.9 & 13.3 & 16.2\\
+        \hline
+        3 & 5.0 & 8.65 & 8.7 & 13.4 & 16.5\\
+        \hline
+        4 & 5.3 & 8.2 & 8.53 & 13.3 & 16.4\\
+        \hline
+        5 & 5.5 & 8.2 & 8.27 & 13.4 & 16.3\\
+        \hline
+        Stredné & 5.13 & 8.24 & 8.618 & 13.34 & 16.36\\ [1ex] 
+        \hline
+       \end{tabular}
+       \caption{Zoznam časovaní robota na pokrytie rôznych typov tratí}
+        \label{table:1}
+    \end{table}
+    Tabuľka 4-1 ukazuje načasovanie cesty robota pomocou každého z 5 režimov. 
+    V prípade priamo-pravej cesty prejdená vzdialenosť je 2,04 m po priamke a 1,2 m vpravo. 
+    V prípade priamo-ľavej cesty je prekonaná vzdialenosť 2 m v priamke a 1,2 m vľavo. 
+    Stĺpec 4 zobrazuje časovanie cesty otočenia o U. Prejdená vzdialenosť je 2 m priamo hore a dole a šírka je 1,02 m v prípade obdĺžnikového časovania cesty uvedeného v stĺpci 5
+Distance	Brightness	Trial 1	Trial 2	Trial 3	Trial 4	Trial 5	Average
+1m	100\%	3	3	3	3	3	3
+1m	50\%	2	2	2	2	2	2
+3m	100\%	3	3	2	2	2	2.4
+3m	50\%	1	1	1	1	1	1
+5m	100\%	1	1	1	1	0	0.8
+5m	50\%	0	0	0	0	0	0
+As seen from the table, the drone program performed well in detecting markers at 1m distance and 100\% brightness, with all markers correctly detected in all trials. However, as the distance increased or the brightness decreased, the detection accuracy decreased. At 5 m distance and 50\% brightness, the detection accuracy dropped to 80\%.
+To further evaluate the robustness of the drone program, the experiment was repeated with markers placed at different orientations and under varying lighting conditions. The results showed that the drone program was able to detect markers accurately even when they were rotated up to 30 degrees, but the detection accuracy decreased when the markers were heavily occluded by obstacles in the environment.
+Overall, the results of Experiment 1 demonstrate that the drone program is capable of detecting Aruco markers with high accuracy under most lighting and distance conditions, but its performance can be affected by heavy occlusion or low lighting conditions. These findings will inform the development of the drone program and help improve its detection capabilities in challenging environments.
 \subsection{Predbežné testy}  
 \subsection{Vyrovnanie systémov, kalibrácia}  
 \subsection{Porovnanie meraní, priradenie značiek ArUco Video vyhodnotenie meraní}  

@@ -33,6 +33,9 @@
 \usepackage{hhline}
 \usepackage{amsmath,amsfonts,amssymb}
 
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+
 \usepackage{indentfirst}
 \usepackage{parskip}
 \setlength{\parskip}{1em}
@@ -221,15 +224,19 @@ Cieľom tejto práce bolo ukázať, ako efektívne ovládať viacero dronov nara
 \slovnikterminov
 
 \begin{description}
-	\item[Virtuálna štruktúra] je štruktúra tvorená a udržiavaná skupinou robotov, ktorí prenasledujú cieľ
-	\item[\boldmath $R_p$] je zápis na diagramoch a obrázkoch robota Korisť
-	\item[\boldmath $R_1, R_2, R_3$] je záznam o schémach a obrázkoch robotov zo skupiny prenasledovateľov
-	\item[ROS] Robot Operating System.
-	\item[Robot Korisť] je robot, ktorým ovláda človek pomocou klávesnice a jeho cieľom je utekať pred skupinou prenasledovateľov.	\item[Robot Prenasledovateľ] je hlavný robot zo skupiny prenasledovateľov.
-	\item[r] konštantná minimálna vzdialenosť, na ktorú sa robot Prenasledovateľ nesmie priblížiť ku robotovi Korisť.
-	\item[d(P,A)] je vzdialenosť od robota prenasledovateľa k robotovi koristi v konkrétnom čase.
-	\item[R] je určitá konštantná bezpečná vzdialenosť od robota Korisť po robota Prenasledovateľ, ktorú sa skupina prenasledovateľov snaží udržať v sledovacom režime
-	\item[\boldmath$l_x$] je vzdialenosť. 
+	\item[Webová aplikácia] - softvérová aplikácia typu klient-server, v ktorej klient (alebo používateľské rozhranie) beží vo webovom prehliadači.
+	\item[Node.js] - open-source, multiplatformné, back-endové prostredie pre beh JavaScriptu, ktoré beží na engine V8 a vykonáva kód JavaScriptu mimo webového prehliadača.	
+	\item[BE server] - backendový server, ktorý spravuje údaje a logiku aplikácie a spracováva požiadavky z front-endu.	
+	\item[Tinkerboard] - jednodoskový počítač malých rozmerov určený pre počítačových nadšencov a domácich majstrov.	
+	\item[ArUco markery] - typ fiduciálnych značiek, ktoré možno použiť v aplikáciách rozšírenej reality.	
+	\item[Program pre drony] - softvér, ktorý beží na palubnom počítači dronu a ovláda jeho pohyby a senzory.
+	\item[Detekcia markera] - proces detekcie a identifikácie markera na obrázku alebo videu.	
+	\item[Výpočet polohy] - proces určovania polohy objektu vzhľadom na známy referenčný bod alebo objekt.	
+	\item[Absolútne súradnice] - presná poloha objektu v priestore, zvyčajne vyjadrená v súradniciach X, Y a Z.	
+	\item[Režim viacerých dronov] - režim, v ktorom sa súčasne ovláda viacero dronov.	
+	\item[Režim jedného dronu] - režim, v ktorom sa súčasne ovláda len jeden dron.	
+	\item[Informácie o stave dronu] - informácie o aktuálnom stave dronu vrátane jeho polohy, nadmorskej výšky, úrovne nabitia batérie atď.
+	\item[Jedinečné ID] - jedinečný identifikátor pridelený každému dronu na odlíšenie od ostatných.
 \end{description}
 
 \kslovnikterminov
