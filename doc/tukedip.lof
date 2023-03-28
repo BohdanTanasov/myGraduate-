@@ -1,0 +1,15 @@
+\babel@toc {slovak}{}\relax 
+\contentsline {figure}{\numberline {2\,--\,1}{\ignorespaces Načítaný obraz (vľavo), skutočná mapa hĺbky na základe senzorov (vľavo uprostred) a napokon mapa hĺbky vytvorená pomocou Gaussovho modelu (vpravo uprostred) a Laplaceovho modelu (vpravo)}}{6}{figure.2.1}%
+\contentsline {figure}{\numberline {2\,--\,2}{\ignorespaces Faktory zohľadňované pri monokulárnom vnímaní hĺbky}}{7}{figure.2.2}%
+\contentsline {figure}{\numberline {2\,--\,3}{\ignorespaces Model virtuálnej kamery. (a) Model virtuálnej kamery systému stereovízie založeného na plochej prizme. (b) Modifikovaný model dierkovej virtuálnej kamery systému stereovízie založeného na voľnej prizme.}}{8}{figure.2.3}%
+\contentsline {figure}{\numberline {2\,--\,4}{\ignorespaces Vľavo: Tradičné stereofónne nastavenie predpokladá, že aspoň dva uhly pohľadu zachytávajú scénu v rovnakom čase. Vpravo: Uvažujeme o nastavení, pri ktorom sa kamera aj objekt pohybujú.}}{9}{figure.2.4}%
+\contentsline {figure}{\numberline {2\,--\,5}{\ignorespaces Pravdepodobnosť detekcie značky v závislosti od jej oblasti na obrázku pre 3 rôzne uhly naklonenia: 0°, 45°, 70°.}}{12}{figure.2.5}%
+\contentsline {figure}{\numberline {2\,--\,6}{\ignorespaces Závislosť vplyvu veľkosti oblasti značky na chybe pri zisťovaní jej polohy.}}{12}{figure.2.6}%
+\contentsline {figure}{\numberline {3\,--\,1}{\ignorespaces Obrázok dronu DJI Tello zobrazujúci jeho komponenty.}}{15}{figure.3.1}%
+\contentsline {figure}{\numberline {3\,--\,2}{\ignorespaces Schéma návrhu systému: Webová aplikácia vytvorená pomocou React komunikuje s backendovým serverom Node.js, ktorý posiela príkazy a prijíma telemetrické údaje z dronov pripojených k ASUS Tinkerboard.}}{17}{figure.3.2}%
+\contentsline {figure}{\numberline {3\,--\,3}{\ignorespaces Smery definované pri ovládaní dronu pomocou SDK.}}{22}{figure.3.3}%
+\contentsline {figure}{\numberline {3\,--\,4}{\ignorespaces Tradičná kalibrácia pomocou vzoru šachovnice. a) Rutiny OpenCV dokážu odhaliť všetky rohy šachovnice. b) Rohy nemožno priradiť k príslušným bodom na vzore šachovnice, ak vzor nie je úplne zachytený.}}{25}{figure.3.4}%
+\contentsline {figure}{\numberline {3\,--\,5}{\ignorespaces Schéma procesu kalibrácie.}}{25}{figure.3.5}%
+\contentsline {figure}{\numberline {3\,--\,6}{\ignorespaces Súradnicový systém kamery a značky interpretovaný programom OpenCV.}}{30}{figure.3.6}%
+\contentsline {figure}{\numberline {3\,--\,7}{\ignorespaces Hlavné nápravy lietadla podľa normy DIN 9300.}}{35}{figure.3.7}%
+\contentsline {figure}{\numberline {3\,--\,8}{\ignorespaces Interpretácia vektora natočenia Rodriguesovej osi a uhla.}}{36}{figure.3.8}%
