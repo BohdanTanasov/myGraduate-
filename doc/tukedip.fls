@@ -985,6 +985,9 @@ INPUT jadroprace.aux
 INPUT ./testing.aux
 INPUT testing.aux
 INPUT testing.aux
+INPUT ./summary.aux
+INPUT summary.aux
+INPUT summary.aux
 INPUT ./zaver.aux
 INPUT zaver.aux
 INPUT zaver.aux
@@ -1350,6 +1353,16 @@ INPUT ./testing.tex
 INPUT testing.tex
 INPUT ./testing.tex
 INPUT testing.tex
+INPUT ./summary.tex
+INPUT ./summary.tex
+INPUT ./summary.tex
+OUTPUT summary.aux
+INPUT ./summary.tex
+INPUT ./summary.tex
+INPUT ./summary.tex
+INPUT summary.tex
+INPUT ./summary.tex
+INPUT summary.tex
 INPUT ./zaver.tex
 INPUT ./zaver.tex
 INPUT ./zaver.tex
@@ -1379,6 +1392,9 @@ INPUT jadroprace.aux
 INPUT ./testing.aux
 INPUT testing.aux
 INPUT testing.aux
+INPUT ./summary.aux
+INPUT summary.aux
+INPUT summary.aux
 INPUT ./zaver.aux
 INPUT zaver.aux
 INPUT zaver.aux
