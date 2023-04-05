@@ -1,0 +1,48 @@
+% !TeX root=tukedip.tex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = sk_SK
+\section{Zhrnutie}
+\textbf{1. Vytvoril funkčný React project, ktorý vykresľuje používateľské rozhranie pomocou niekoľkých háčikov React, ako sú useState, useEffect a useContext.}
+
+Použitie funkčných komponentov a háčikov React umožňuje efektívnejší a flexibilnejší kód v porovnaní s komponentmi založenými na triedach.
+Háčik useState sa používa na správu stavových údajov v rámci komponentu.
+Háčik useEffect sa používa na spracovanie vedľajších efektov, ako je napríklad aktualizácia používateľského rozhrania v reakcii na zmeny údajov alebo vykonávanie požiadaviek API.
+useContext hook sa používa na zdieľanie údajov medzi komponentmi bez toho, aby bolo potrebné odovzdávať rekvizity nadol cez viaceré úrovne.
+
+\textbf{2. Na vylepšenie používateľského rozhrania sa využívajú rôzne komponenty UI Material, ako napríklad Grid, ToggleButton, Tabs, Tab, Button, Typography a Box.}
+
+Material UI poskytuje knižnicu vopred pripravených komponentov, ktoré možno ľahko prispôsobiť a naštýlovať tak, aby zodpovedali požadovanému dizajnu používateľského rozhrania.
+Komponent Grid sa používa na vytvorenie flexibilného a citlivého rozvrhnutia používateľského rozhrania.
+Komponenty ToggleButton, Tabs a Tab sa používajú na vytvorenie navigačného systému používateľského rozhrania založeného na kartách.
+Komponenty Button a Typography sa používajú na vytvorenie rôznych tlačidiel a textových prvkov pre používateľské rozhranie.
+Komponent Box sa používa na vytvorenie kontajnerového prvku, ktorý možno ľahko štylizovať a umiestňovať v rámci používateľského rozhrania.
+
+\textbf{3. Implementovaná vlastná komponenta BatteryGauge a komponenta ControlBlock, ktorá vykresľuje niekoľko komponentov NavigationButton, čo pridáva UI ďalšie funkcie.}
+
+Komponent BatteryGauge sa používa na zobrazenie úrovne nabitia batérie dronu v grafickej podobe.
+Komponent ControlBlock sa používa na zoskupenie niekoľkých komponentov NavigationButton, aby bolo používateľské rozhranie kompaktnejšie a usporiadanejšie.
+Komponent NavigationButton sa používa na vytvorenie rôznych tlačidiel na ovládanie dronu, napríklad na vzlet, pristátie a núdzové zastavenie.
+
+\textbf{4. Úspešné pripojenie k serveru WebSocket pomocou knižníc useContext a socket.io-client, čo umožňuje programu prijímať a odosielať údaje na server.}
+
+WebSocket je protokol, ktorý umožňuje komunikáciu medzi klientom a serverom v reálnom čase.
+Háčik useContext sa používa na zdieľanie objektu pripojenia WebSocket medzi viacerými komponentmi.
+Knižnica socket.io-client sa používa na spracovanie pripojenia a komunikácie WebSocket.
+Počúval na udalosti pomocou useEffect a aktualizoval stav prijatými údajmi, čím umožnil aktualizáciu používateľského rozhrania v reálnom čase.
+
+\textbf{5. Implementovaná detekcia značiek Aruco a výpočet polohy pomocou knižnice OpenCV, čo umožňuje programu presne určiť polohu dronu vzhľadom na značky.}
+
+Proces detekcie zahŕňa nájdenie značiek Aruco v obraze kamery dronu a extrahovanie ich ID a pozícií. Potom program pomocou známych pozícií značiek vypočíta polohu dronu vzhľadom na značky. Tieto informácie sú kľúčové pre ovládanie dronu a vykonávanie zložitých manévrov. Presnosť výpočtu polohy sa vyhodnotila prostredníctvom série experimentov a zistilo sa, že je v prijateľných medziach.
+Program dronu počúva rôzne udalosti zo servera, napríklad aktualizácie stavu dronu a zmeny úrovne nabitia batérie.
+Háčik useEffect sa používa na aktualizáciu používateľského rozhrania v reakcii na zmeny údajov.
+Použitie aktualizácií v reálnom čase umožňuje citlivejšie a presnejšie ovládanie dronu.
+
+Celkovo program pre dron úspešne dosiahol nasledujúce výsledky:
+
+\begin{itemize}
+        \item Vytvoril užívateľsky prívetivé a citlivé používateľské rozhranie na ovládanie dronov.
+        \item Integroval sa so serverom WebSocket na prijímanie a odosielanie údajov v reálnom čase.
+        \item Do používateľského rozhrania pridal ďalšie funkcie, napríklad monitorovanie úrovne nabitia batérie a navigačné tlačidlá.
+        \item Úspešne využil rôzne háčiky React a komponenty Material UI na vytvorenie interaktívneho a moderného používateľského rozhrania.
+\end{itemize}
+
