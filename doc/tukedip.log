@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.10)  5 APR 2023 22:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.10)  8 APR 2023 16:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -622,7 +622,7 @@ LaTeX Warning: Label `table:1' multiply defined.
 
 LaTeX Warning: Label `table:1' multiply defined.
 
-) (./summary.aux) (./zaver.aux))
+) (./summary.aux) (./zaver.aux) (./literatura.aux))
 \openout1 = `tukedip.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 129.
@@ -738,7 +738,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmss on input line 16
  (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [4]
-<zadavaci-list.pdf, id=204, 597.23125pt x 845.1575pt>
+<zadavaci-list.pdf, id=212, 597.23125pt x 845.1575pt>
 File: zadavaci-list.pdf Graphic file (type pdf)
 <use zadavaci-list.pdf>
 Package pdftex.def Info: zadavaci-list.pdf  used on input line 171.
@@ -747,7 +747,7 @@ File: zadavaci-list.pdf Graphic file (type pdf)
 <use zadavaci-list.pdf>
 Package pdftex.def Info: zadavaci-list.pdf  used on input line 171.
 (pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
-<zadavaci-list.pdf, id=207, page=1, 597.23125pt x 845.1575pt>
+<zadavaci-list.pdf, id=215, page=1, 597.23125pt x 845.1575pt>
 File: zadavaci-list.pdf Graphic file (type pdf)
 <use zadavaci-list.pdf, page 1>
 Package pdftex.def Info: zadavaci-list.pdf , page1 used on input line 171.
@@ -833,7 +833,7 @@ l.27
       [5]
 
 pdfTeX warning: pdflatex (file ./figures//figure 2-1.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 2-1.pdf, id=370, 1985.4175pt x 378.41376pt>
+<figures//figure 2-1.pdf, id=388, 1985.4175pt x 378.41376pt>
 File: figures//figure 2-1.pdf Graphic file (type pdf)
 <use figures//figure 2-1.pdf>
 Package pdftex.def Info: figures//figure 2-1.pdf  used on input line 32.
@@ -846,7 +846,7 @@ l.47 \end{itemize}
                    [6 <./figures//figure 2-1.pdf>]
 
 pdfTeX warning: pdflatex (file ./figures//figure 2-2.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 2-2.pdf, id=380, 642.4pt x 532.99126pt>
+<figures//figure 2-2.pdf, id=401, 642.4pt x 532.99126pt>
 File: figures//figure 2-2.pdf Graphic file (type pdf)
 <use figures//figure 2-2.pdf>
 Package pdftex.def Info: figures//figure 2-2.pdf  used on input line 52.
@@ -859,7 +859,7 @@ l.62
       [7 <./figures//figure 2-2.pdf>]
 
 pdfTeX warning: pdflatex (file ./figures//figure 2-3.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 2-3.pdf, id=388, 642.4pt x 290.08376pt>
+<figures//figure 2-3.pdf, id=413, 642.4pt x 290.08376pt>
 File: figures//figure 2-3.pdf Graphic file (type pdf)
 <use figures//figure 2-3.pdf>
 Package pdftex.def Info: figures//figure 2-3.pdf  used on input line 65.
@@ -868,11 +868,11 @@ Package pdftex.def Info: figures//figure 2-3.pdf  used on input line 65.
 pdfTeX warning (ext4): destination with the same identifier (name{page.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.77 N
-      a záver možno konštatovať, že hoci je princíp stereosnímania v�... [8 <./figures//figure 2-3.pdf>]
+l.76 
+      [8 <./figures//figure 2-3.pdf>]
 
 pdfTeX warning: pdflatex (file ./figures//figure 2-4.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 2-4.pdf, id=396, 642.4pt x 397.485pt>
+<figures//figure 2-4.pdf, id=424, 642.4pt x 397.485pt>
 File: figures//figure 2-4.pdf Graphic file (type pdf)
 <use figures//figure 2-4.pdf>
 Package pdftex.def Info: figures//figure 2-4.pdf  used on input line 84.
@@ -890,7 +890,7 @@ l.103
        [10]
 
 pdfTeX warning: pdflatex (file ./figures//figure 2-5.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 2-5.pdf, id=410, 943.525pt x 636.3775pt>
+<figures//figure 2-5.pdf, id=441, 943.525pt x 636.3775pt>
 File: figures//figure 2-5.pdf Graphic file (type pdf)
 <use figures//figure 2-5.pdf>
 Package pdftex.def Info: figures//figure 2-5.pdf  used on input line 112.
@@ -898,7 +898,7 @@ Package pdftex.def Info: figures//figure 2-5.pdf  used on input line 112.
 
 
 pdfTeX warning: pdflatex (file ./figures//figure 2-6.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 2-6.pdf, id=411, 943.525pt x 636.3775pt>
+<figures//figure 2-6.pdf, id=442, 943.525pt x 636.3775pt>
 File: figures//figure 2-6.pdf Graphic file (type pdf)
 <use figures//figure 2-6.pdf>
 Package pdftex.def Info: figures//figure 2-6.pdf  used on input line 119.
@@ -929,7 +929,7 @@ l.248 \include{analyza}
  (./design.tex
 
 pdfTeX warning: pdflatex (file ./figures//figure 3-1.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 3-1.pdf, id=610, 752.8125pt x 660.4675pt>
+<figures//figure 3-1.pdf, id=644, 752.8125pt x 660.4675pt>
 File: figures//figure 3-1.pdf Graphic file (type pdf)
 <use figures//figure 3-1.pdf>
 Package pdftex.def Info: figures//figure 3-1.pdf  used on input line 9.
@@ -946,7 +946,7 @@ l.15
  <./figures//figure 3-1.pdf>] [16]
 
 pdfTeX warning: pdflatex (file ./figures//figure 3-2.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 3-2.pdf, id=623, 3102.59125pt x 2066.72125pt>
+<figures//figure 3-2.pdf, id=660, 3102.59125pt x 2066.72125pt>
 File: figures//figure 3-2.pdf Graphic file (type pdf)
 <use figures//figure 3-2.pdf>
 Package pdftex.def Info: figures//figure 3-2.pdf  used on input line 29.
@@ -974,7 +974,7 @@ Overfull \hbox (10.58936pt too wide) in paragraph at lines 121--122
 [21]
 
 pdfTeX warning: pdflatex (file ./figures//figure 3-3.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 3-3.pdf, id=785, 820.06375pt x 732.7375pt>
+<figures//figure 3-3.pdf, id=825, 820.06375pt x 732.7375pt>
 File: figures//figure 3-3.pdf Graphic file (type pdf)
 <use figures//figure 3-3.pdf>
 Package pdftex.def Info: figures//figure 3-3.pdf  used on input line 125.
@@ -982,7 +982,7 @@ Package pdftex.def Info: figures//figure 3-3.pdf  used on input line 125.
 [22 <./figures//figure 3-3.pdf>] [23] [24]
 
 pdfTeX warning: pdflatex (file ./figures//figure 3-4.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 3-4.pdf, id=805, 642.4pt x 268.00125pt>
+<figures//figure 3-4.pdf, id=852, 642.4pt x 268.00125pt>
 File: figures//figure 3-4.pdf Graphic file (type pdf)
 <use figures//figure 3-4.pdf>
 Package pdftex.def Info: figures//figure 3-4.pdf  used on input line 157.
@@ -990,7 +990,7 @@ Package pdftex.def Info: figures//figure 3-4.pdf  used on input line 157.
 
 
 pdfTeX warning: pdflatex (file ./figures//figure 3-5.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 3-5.pdf, id=806, 566.115pt x 155.58125pt>
+<figures//figure 3-5.pdf, id=853, 566.115pt x 155.58125pt>
 File: figures//figure 3-5.pdf Graphic file (type pdf)
 <use figures//figure 3-5.pdf>
 Package pdftex.def Info: figures//figure 3-5.pdf  used on input line 164.
@@ -1013,7 +1013,7 @@ Overfull \hbox (0.97697pt too wide) in paragraph at lines 212--213
 [29]
 
 pdfTeX warning: pdflatex (file ./figures//figure 3-6.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 3-6.pdf, id=849, 642.4pt x 251.94125pt>
+<figures//figure 3-6.pdf, id=899, 642.4pt x 251.94125pt>
 File: figures//figure 3-6.pdf Graphic file (type pdf)
 <use figures//figure 3-6.pdf>
 Package pdftex.def Info: figures//figure 3-6.pdf  used on input line 219.
@@ -1031,7 +1031,7 @@ Overfull \hbox (11.83438pt too wide) in paragraph at lines 282--283
 [33]
 
 pdfTeX warning: pdflatex (file ./figures//figure 3-8.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 3-8.pdf, id=895, 853.1875pt x 605.26125pt>
+<figures//figure 3-8.pdf, id=951, 853.1875pt x 605.26125pt>
 File: figures//figure 3-8.pdf Graphic file (type pdf)
 <use figures//figure 3-8.pdf>
 Package pdftex.def Info: figures//figure 3-8.pdf  used on input line 315.
@@ -1039,7 +1039,7 @@ Package pdftex.def Info: figures//figure 3-8.pdf  used on input line 315.
 [34] [35 <./figures//figure 3-8.pdf>]
 
 pdfTeX warning: pdflatex (file ./figures//figure 3-7.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<figures//figure 3-7.pdf, id=914, 301.125pt x 486.81876pt>
+<figures//figure 3-7.pdf, id=973, 301.125pt x 486.81876pt>
 File: figures//figure 3-7.pdf Graphic file (type pdf)
 <use figures//figure 3-7.pdf>
 Package pdftex.def Info: figures//figure 3-7.pdf  used on input line 353.
@@ -1108,33 +1108,40 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 
-] [60]) [61]
+] [60] [61]) [62]
 \openout2 = `zaver.aux'.
 
- (./zaver.tex) [62
+ (./zaver.tex) [63
 
 
 
-] (./tukedip.aux (./uvod.aux) (./formulacia.aux) (./analyza.aux) (./design.aux) (./jadroprace.aux) (./testing.aux) (./summary.aux) (./zaver.aux))
+]
+\openout2 = `literatura.aux'.
+
+ (./literatura.tex [64
+
+
+
+] [65] [66]) [67] (./tukedip.aux (./uvod.aux) (./formulacia.aux) (./analyza.aux) (./design.aux) (./jadroprace.aux) (./testing.aux) (./summary.aux) (./zaver.aux) (./literatura.aux))
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `tukedip.out' has not changed.
-(rerunfilecheck)             Checksum: 0F8F39E517934D62C6FAF8489A7F63A7;9474.
+(rerunfilecheck)             Checksum: 2783B655EDB3F76EAC1636937AFDE9BD;9877.
  ) 
 Here is how much of TeX's memory you used:
- 27490 strings out of 478268
- 502895 string characters out of 5846347
- 1115005 words of memory out of 5000000
- 44868 multiletter control sequences out of 15000+600000
+ 27578 strings out of 478268
+ 504539 string characters out of 5846347
+ 1116295 words of memory out of 5000000
+ 44920 multiletter control sequences out of 15000+600000
  551107 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,17n,91p,1148b,2057s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtto10.pfb>
-Output written on tukedip.pdf (77 pages, 12565988 bytes).
+ 88i,17n,91p,1292b,2057s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtto10.pfb>
+Output written on tukedip.pdf (82 pages, 12603745 bytes).
 PDF statistics:
- 1231 PDF objects out of 1440 (max. 8388607)
- 918 compressed objects within 10 object streams
- 252 named destinations out of 1000 (max. 500000)
- 455 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1337 PDF objects out of 1440 (max. 8388607)
+ 1016 compressed objects within 11 object streams
+ 281 named destinations out of 1000 (max. 500000)
+ 471 words of extra memory for PDF output out of 10000 (max. 10000000)
 
