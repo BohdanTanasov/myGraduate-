@@ -42,4 +42,6 @@
 \contentsline {subsection}{\numberline {5.3}Režim viacerých dronov}{56}{subsection.5.3}%
 \contentsline {subsection}{\numberline {5.4}Kontrola skupiny dronov}{57}{subsection.5.4}%
 \contentsline {section}{\numberline {6}Zhrnutie}{59}{section.6}%
-\contentsline {section}{\numberline {7}Z\'aver}{62}{section.7}%
+\contentsline {subsection}{\numberline {6.1}Návrhy na ďalší vývoj}{62}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Z\'aver}{63}{section.7}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }Zoznam použitej literatúry}{64}{section*.7}%
