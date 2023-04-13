@@ -121,7 +121,7 @@
 
     \bigskip
 
-    {\Large Bakalárska práca}
+    {\Large Diplomova práca}
   \end{center}
 
   \vfil
@@ -443,7 +443,7 @@ Author:\\ \@autor
 &Katedra \@katedra\end{tabular}\hfil Strana~\thepage\linebreak
      \vspace{-0.5\baselineskip}\end{minipage}}
     \def\@oddhead{\begin{minipage}{1\textwidth}\small
-\@kratkynazov~--~bakalárska práca\hfil \@nazovprogramu~--~používateľská príručka\linebreak
+\@kratkynazov~--~diplomova práca\hfil \@nazovprogramu~--~používateľská príručka\linebreak
      \vspace{-0.5\baselineskip}\hrule\end{minipage}}%
 %    \let\@mkboth\markboth
 %    \def\sectionmark##1{%
