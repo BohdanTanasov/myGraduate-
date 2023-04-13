@@ -48,6 +48,10 @@
 
 \usepackage{listings}
 
+\usepackage{indentfirst}
+\usepackage{parskip}
+\setlength{\parskip}{1em}
+
 \def\figurename{Obrázok}
 \def\tabname{Tabuľka}
  
@@ -96,19 +100,19 @@ pdfsubject={Používateľská priručka}
 
 %\usepackage{mathptm} %\usepackage{times}
 
-\katedra{umelej inteligencie}
+\katedra{Umelej inteligencie}
 \department{Fakulta elektrotechniky a informatiky}
 \odbor{Inteligentné systémy}
 \autor{Bohdan Tanasov}
 \veduci{doc. Dr. Ing.~Ján~Vaščák}
-\konzultant{doc. Dr. Ing.~Ján~Vaščák}
-\nazov{Simulácia kooperácie multi-robotického systému}
+\konzultant{ing.~Dušan~Herich}
+\nazov{Simulation of Cooperation for a Multi-Robotic System}
 % \kratkynazov{Optimalizácia písania DP}
-\nazovprogramu{Proces multi-robotického lovu}
+\nazovprogramu{Ovládanie viacerých dronov pomocou webu}
 \klucoveslova{optimalizácia, diplomová práca, písanie}
 \title{The optimization of the diploma writing at our faculty}
 \keywords{optimization, diploma, writing}
-\datum{28. 5. 2021}
+\datum{28. 5. 2023}
 
 
 
@@ -135,309 +139,145 @@ pdfsubject={Používateľská priručka}
 \setcounter{page}{1}
 
 \section{Funkcia programu}
+Vitajte v používateľskej príručke pre systém riadenia dronov Tello, ktorý bol vyvinutý v rámci magisterského projektu. Tento systém je určený na ovládanie viacerých dronov Tello pomocou webového rozhrania vytvoreného pomocou React a socketov. Pomocou značkovačov Aruco sú drony schopné zisťovať svoju polohu a podľa nej sa navigovať.
 
-Tento program je súčasťou bakalárskej práce a týka sa experimentov s kooperatívnymi úlohami vykonávaných rôznymi typmi
- robotov. Toto riešenie obsahuje projekt, ktorý simuluje proces lovu so skupinou multi-robotov pripravených v ROS2 a 
- simulovaných v prostredí Webots. Simulácia je plocha s modelmi rôznych fyzických objektov, robotov a algoritmov na ich riadenie.
+Systém ovládania dronov Tello ponúka dva režimy prevádzky, individuálny a skupinový. V individuálnom režime môže používateľ ovládať jeden dron, zatiaľ čo v skupinovom režime môže vidieť stav všetkých pripojených dronov, ale môže ovládať vždy len jeden. Webové rozhranie poskytuje tlačidlo na prepínanie medzi týmito dvoma režimami spolu so zoznamom ikon predstavujúcich pripojené drony. Používateľ môže kliknutím na ikonu aktivovať dron v individuálnom režime a stav dronu sa zobrazí v skupinovom režime.
 
-\vspace{3mm}
+Systém ovládania dronov Tello poskytuje používateľovi aj rôzne ovládacie prvky na ovládanie dronov. Medzi ovládacie prvky patria: dopredu, doľava, dozadu, doprava, vzlet, pristátie, hore, dole, otočenie doľava a otočenie doprava. Tieto ovládacie prvky sú k dispozícii v individuálnom aj skupinovom režime.
 
-\justifying
-\noindent
-Používateľ má možnosť sledovať experiment v reálnom čase pomocou grafického okna a ovládať simulačný čas pomocou ovládacích tlačidiel a klávesnice. Webots umožňujú vytvoriť zo simulácie applet alebo video HTML.
+Táto používateľská príručka vás prevedie inštaláciou a prevádzkou systému ovládania dronov Tello. Či už ste začiatočník alebo skúsený používateľ, táto príručka vám poskytne všetky potrebné informácie na efektívne ovládanie systému ovládania dronu Tello.
 
-\section{Inštalácia programu}
+\newpage
+\section{Začíname}
+Skôr ako budete môcť používať riadiaci systém pre viacero dronov Tello pomocou webového rozhrania, musíte sa uistiť, že máte potrebný hardvér a softvér.
 
-\subsection{Požiadavky na technické prostriedky}
-Na spustenie projektu je potrebný nasledujúci hardvér:
+\subsection{Požiadavky na hardvér}
+Na používanie riadiaceho systému budete potrebovať nasledujúci hardvér:
 \begin{itemize}
-    \item Pomerne nedávny počítač typu PC alebo Mac s minimálne dvojjadrovým taktom procesora 2 GHz a 2 GB pamäte RAM je minimálnou požiadavkou. Odporúča sa však štvorjadrový procesor. Minimalne 4 GB diskoveho priestoru.
-    \item Vyžaduje sa grafický adaptér s podporou NVIDIA alebo AMD OpenGL (minimálna verzia 3.3) s minimálne 512 MB RAM. Neodporúča sa žiadne ďalšie grafické adaptéry, vrátane grafických adaptérov Intel, pretože im často chýba dobrá podpora OpenGL, čo by mohlo spôsobiť problémy s 3D vykresľovaním a zlyhania aplikácií. Napriek tomu v niektorých prípadoch môže inštalácia najnovšieho grafického ovládača Intel tieto problémy vyriešiť a umožniť vám používať Webots. Na toto však neposkytujeme žiadnu záruku. Pre systémy Linux odporúčam iba grafické karty NVIDIA. Project funguje dobre na všetkých grafických kartách obsiahnutých v pomerne nedávnych počítačoch Apple.
+    \item Viacero dronov Tello: Presný počet potrebných dronov bude závisieť od konkrétneho prípadu použitia.
+    \item Asus TinkerBoard: Toto je centrálny ovládač, ktorý sa bude používať na spúšťanie programov v jazyku Python pre každý dron.
+    \item Značkovače Aruco: Tie sa budú používať na presné určenie polohy dronov.
 \end{itemize}
 
-\subsection{Požiadavky na programové prostriedky}
-% Toto riešenie je vytvorené pomocou nasledujúcich verzií softvéru:
-\begin{enumerate}
-\item Webots – R2020a revision 1. Toto riešenie bolo vyvinuté a spustené na verzii We-bots: R2020a revízia 1. Webots je možné prevádzkovať na systémoch Ubuntu Linux LTS 18.04, Windows 8.1 alebo Windows 10 a Mac OS 10.15 „Catalina“ a 10.14 „Mojave“.
-\item Python – 3.6.9. Toto riešenie obsahuje programy (radiče) Pythonu, takže sa vyžaduje aj prostredie Pythonu.
-\item Pip – 9.0.1. Toto je správca balíkov Python na inštaláciu ďalších knižníc.
-\item NumPy – 1.18.4. Je to knižnica Pythonu pre matematické operácie a v tomto riešení sa používajú niektoré funkcie.
-% \item Linux - Ubuntu 20.04
-% \item Visual Studio code
-\item ROS - 2. ROS, robotický operačný systém, je platformou voľby pre vývoj robotov.
-\item OpenCV – 4.5.2. OpenCV poskytuje knižnicu, nástroje a hardvér počítačového videnia optimalizovanú v reálnom čase.
-\end{enumerate}
+\subsection{Požiadavky na softvér}
+Okrem požadovaného hardvéru je potrebné mať nainštalovaný aj nasledujúci softvér:
 
-\subsection{Vlastná inštalácia}
+\begin{itemize}
+  \item Webový prehliadač: Webové rozhranie je prístupné pomocou akéhokoľvek moderného webového prehliadača, napríklad Google Chrome, Mozilla Firefox alebo Microsoft Edge.
+  \item Node.js: Ide o runtime jazyka JavaScript, ktorý je potrebný na spustenie backendu riadiaceho systému.
+  \item Python: Programy pre drony budú napísané v jazyku Python, preto je potrebné, aby ste mali na Asus TinkerBoard nainštalovaný jazyk Python.
+\end{itemize}
 
-Táto časť obsahuje proces inštalácie systému Ubuntu Linux (18.04) pomocou nástroja Advanced Package Tool. Prosím, otvorte terminál a postupne spustite nasledujúce príkazy na inštaláciu Webots:
+\subsection{Pripojenie hardvéru}
+Aby ste mohli začať pracovať s riadiacim systémom, budete musieť pripojiť hardvér nasledujúcim spôsobom:
 
-\begin{lstlisting}[language=Python, caption=Python example]
-$ wget -qO- https://cyberbotics.com/Cyberbotics.asc 
-    | sudo apt-key add -
+\begin{itemize}
+  \item Pripojte každý dron Tello k doske Asus TinkerBoard pomocou pripojenia Wi-Fi.
+  \item Namontujte značky Aruco na vhodné miesta v pracovnej oblasti dronu, aby ste zabezpečili presné určenie polohy.
+\end{itemize}
 
-$ sudo apt-add-repository 
-    "deb https://cyberbotics.com/debian/ binary-amd64/"
+\subsection{Spustenie riadiaceho systému}
+Keď máte nainštalovaný a pripojený všetok potrebný hardvér a softvér, môžete spustiť riadiaci systém podľa nasledujúcich krokov:
 
-$ sudo apt-get update
+\begin{itemize}
+  \item Klonujte repozitár projektu z GitHub.
+  \item Nainštalujte závislosti Node.js spustením príkazu npm install v adresári projektu.
+  \item Pripojte Asus TinkerBoard k zdroju napájania a spustite ho.
+  \item Spustite program Python pre každý dron na Asus TinkerBoard.
+  \item Spustite server Node.js spustením príkazu node index.js v adresári projektu.
+  \item Otvorte webový prehliadač a prejdite na adresu URL webového rozhrania.
+  \item Podľa pokynov na obrazovke ovládajte drony jednotlivo alebo v skupinovom režime.
+  \item Gratulujeme, teraz ste úspešne spustili systém ovládania viacerých dronov Tello pomocou webového rozhrania!
+\end{itemize}
 
-$ sudo apt-get install webots
-\end{lstlisting}
-\vspace{3mm}
+\newpage
+\section{Individuálne a skupinové režimy}
+Systém ovládania viacerých dronov Tello umožňuje používateľovi prepínať medzi dvoma rôznymi režimami: Individuálny a skupinový.
 
-\justifying
-\noindent
-Potom spustite nasledujúce príkazy na inštaláciu Pythonu a požadovaných knižníc:
+\subsection{Individuálny režim}
+V individuálnom režime môže používateľ naraz ovládať jeden dron. Ak chcete vybrať dron, používateľ môže jednoducho kliknúť na príslušnú ikonu/tlačidlo dronu zo zoznamu pripojených dronov zobrazeného vo webovom rozhraní. Po výbere dronu môže používateľ na ovládanie pohybu dronu použiť dostupné ovládacie prvky, ako sú pohyb dopredu, dozadu, doľava, doprava, nahor, nadol a preklopenie doľava/doprava. Používateľ môže tiež pristáť alebo vzlietnuť s dronom pomocou príslušných tlačidiel.
 
-\begin{lstlisting}
-$ sudo apt-get update
+\subsection{Režim skupiny}
+V skupinovom režime môže používateľ zobraziť stav všetkých pripojených dronov súčasne, ale nemôže ovládať žiadny jednotlivý dron. Zobrazí sa zoznam pripojených dronov spolu s ich stavmi, napríklad či práve letia, pristávajú alebo sa nabíjajú. Používateľ môže zobraziť živý videokanál každého dronu kliknutím na príslušnú ikonu/tlačidlo dronu zo zoznamu. Okrem toho môže používateľ použiť dostupné ovládacie prvky, ako je priblíženie a oddialenie, na úpravu videokamery na lepšie sledovanie.
 
-$ sudo apt install software-properties-common
+\subsection{Prepínacie tlačidlo}
+Používateľ môže prepínať medzi individuálnym a skupinovým režimom kliknutím na prepínacie tlačidlo umiestnené vo webovom rozhraní. Keď používateľ prepne do individuálneho režimu, zobrazí sa zoznam pripojených dronov spolu s ich stavmi a ikonami/tlačidlami na ich ovládanie. Keď používateľ prepne do režimu skupiny, zobrazí sa zoznam pripojených dronov spolu s ich stavmi a ikonami/tlačidlami na zobrazenie ich živých videokanálov.
 
-$ sudo add-apt-repository ppa:deadsnakes/ppa
+Poznámka: Je dôležité zabezpečiť, aby dron ovládal vždy len jeden používateľ, aby sa predišlo konfliktom a kolíziám medzi dronmi. Preto bol riadiaci systém navrhnutý tak, aby v individuálnom režime mohol byť v danom čase len jeden používateľ. Ak sa iný používateľ pokúsi vstúpiť do individuálneho režimu, keď už dron ovláda iný používateľ, zobrazí sa chybové hlásenie a nebude môcť ovládať dron, kým ho aktuálny používateľ neuvoľní.
 
-$ sudo apt-get update
+\newpage
+\section{Ovládanie dronov}
 
-$ sudo apt-get install python3
+Keď je dron vybraný v individuálnom režime, používateľ má plnú kontrolu nad pohybom a správaním tohto dronu. K dispozícii sú nasledujúce ovládacie prvky:
 
-$ sudo apt-get install pip3
+\begin{itemize}
+\item Vzlet/Pristátie: Tlačidlo Vzlet zdvihne dron zo zeme a vznáša sa v pevnej výške, zatiaľ čo tlačidlo Pristátie vráti dron späť na zem a vypne jeho motory.
+\item Dopredu/dozadu: Tlačidlá Vpred a Vzad posúvajú dron dopredu, resp. dozadu. Prejdená vzdialenosť závisí od dĺžky podržania tlačidla.
+\item Vľavo/vpravo: Tlačidlá Vľavo a Vpravo posúvajú dron doľava, resp. doprava. Prejdená vzdialenosť závisí od toho, ako dlho je tlačidlo podržané.
+\item Nahor/Dole: Tlačidlami Nahor a Nadol sa dron pohybuje nahor, resp. nadol. Prejdená vzdialenosť závisí od toho, ako dlho je tlačidlo podržané.
+\item Preklopenie doľava/doprava: Tlačidlá Flip Left (Prevrátiť doľava) a Flip Right (Prevrátiť doprava) vykonajú otočenie o 360 stupňov doľava, resp. doprava.
+\item Núdzové zastavenie: Tlačidlo núdzového zastavenia okamžite preruší napájanie motorov dronu a spôsobí jeho pád z oblohy. Toto tlačidlo by sa malo používať len v prípade núdze.
+\end{itemize}
 
-$ pip install numpy
+V režime skupiny môže používateľ stále ovládať drony jednotlivo, ale môže tiež vydávať príkazy všetkým dronom v skupine naraz. K dispozícii sú nasledujúce ovládacie prvky:
 
-$ pip install opencv-python
+\begin{itemize}
+\item Prepínanie skupinového režimu: Tlačidlo Prepnúť skupinový režim prepína rozhranie medzi individuálnym a skupinovým režimom.
+\item Vybrať/zrušiť výber dronov: Na obrazovke sa zobrazí zoznam dostupných dronov a používateľ môže vybrať jeden alebo viac dronov, ktoré chce ovládať. Vybrané drony sa zvýraznia a ich stavy sa zobrazia v časti Drone Status (Stav dronu).
+\item Vzlet všetkých/Pristátie všetkých: Tlačidlo Vzlet všetkých zdvihne všetky drony v skupine nad zem, aby sa vznášali v pevnej výške, zatiaľ čo tlačidlo Pristátie všetkých vráti všetky drony späť na zem a vypne ich motory.
+\item Dopredu/dozadu všetky: Tlačidlá Dopredu všetky a Dozadu všetky posúvajú všetky drony v skupine dopredu, resp. dozadu.
+\item Vľavo/vpravo všetko: Tlačidlá Vľavo všetko a Vpravo všetko posúvajú všetky drony v skupine doľava, resp. doprava.
+\item Nahor/Dole Všetky: Tlačidlá Nahor Všetky a Nadol Všetky posúvajú všetky drony v skupine nahor, resp. nadol.
+\item Flip Left/Right All (Prevrátiť doľava/doprava všetky): Tlačidlá Flip Left All (Prevrátiť doľava všetky) a Flip Right All (Prevrátiť doprava všetky) vykonajú pre všetky drony v skupine otočenie o 360 stupňov doľava alebo doprava.
+\item Emergency Stop All (Núdzové zastavenie všetkých): Tlačidlo Emergency Stop All (Núdzové zastavenie všetkých) okamžite preruší napájanie motorov všetkých dronov v skupine a spôsobí ich pád z oblohy. Toto tlačidlo by sa malo používať len v prípade núdze.
+\end{itemize}
 
-\end{lstlisting}
-\vspace{3mm}
+Časť Stav dronu zobrazuje stav každého dronu v skupine vrátane úrovne nabitia batérie, nadmorskej výšky a toho, či práve letí alebo je na zemi. Používateľ môže tieto informácie použiť na prijímanie informovaných rozhodnutí o spôsobe ovládania dronov.
 
-\justifying
-\noindent
-Ďalším krokom je inštalácia ROS2.
-\vspace{3mm}
+\newpage
+\section{Riešenie problémov}
 
-\justifying
-\noindent
-Krok 1. Set locale
-\begin{lstlisting}
-$ locale  # check for UTF-8
+Napriek tomu, že sme urobili všetko pre to, aby bol náš systém užívateľsky prívetivý a ľahko použiteľný, môžu sa vyskytnúť problémy, na ktoré narazíte. Tu sú uvedené niektoré bežné problémy a spôsob ich riešenia:
 
-$ sudo apt update && sudo apt install locales
-$ sudo locale-gen en_US en_US.UTF-8
-$ sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-$ export LANG=en_US.UTF-8
-    
-$ locale  # verify settings
-\end{lstlisting}
-\vspace{3mm}
+\subsection{Problémy s pripojením dronu}
 
-\justifying
-\noindent
-Krok 2. Add the ROS 2 apt repository
-\begin{lstlisting}
-$ sudo apt update && sudo apt install curl gnupg2 lsb-release
+\begin{itemize}
+\item Ak máte problémy s pripojením k dronu, uistite sa, že je zapnutý a jeho batéria je nabitá. Tiež sa uistite, že je v dosahu TinkerBoard a že je pripojený k rovnakej sieti WiFi.
+\item Ak máte stále problémy, skúste resetovať dron a/alebo TinkerBoard.
+\end{itemize}
 
-$ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro
-    /master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg
+\subsection{Problémy s detekciou značky Aruco}
 
-$ echo "deb [arch=$(dpkg --print-architecture) 
-    signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] 
-    http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | 
-    sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
-\end{lstlisting}
-\vspace{3mm}
+\begin{itemize}
+\item Ak majú drony problémy s detekciou svojej polohy pomocou značiek Aruco, skontrolujte, či sú značky správne umiestnené a či sa nachádzajú v zornom poli kamery. Uistite sa tiež, že sú vhodné svetelné podmienky.
+\item Ak problém pretrváva, skúste upraviť nastavenia kamery alebo použiť iný typ markera.
+\end{itemize}
 
-\justifying
-\noindent
-Krok 3. Install development tools and ROS tools
-\begin{lstlisting}
-$ sudo apt update && sudo apt install -y \
-  build-essential \
-  cmake \
-  git \
-  libbullet-dev \
-  python3-colcon-common-extensions \
-  python3-flake8 \
-  python3-pip \
-  python3-pytest-cov \
-  python3-rosdep \
-  python3-setuptools \
-  python3-vcstool \
-  wget
+\subsection{Problémy s webovou aplikáciou}
 
-$ python3 -m pip install -U \
-  argcomplete \
-  flake8-blind-except \
-  flake8-builtins \
-  flake8-class-newline \
-  flake8-comprehensions \
-  flake8-deprecated \
-  flake8-docstrings \
-  flake8-import-order \
-  flake8-quotes \
-  pytest-repeat \
-  pytest-rerunfailures \
-  pytest
+\begin{itemize}
+\item Ak sa webová aplikácia nenačíta alebo sa správa nepravidelne, skúste obnoviť stránku alebo vymazať vyrovnávaciu pamäť prehliadača.
+\item Ak problém pretrváva, skúste použiť iný webový prehliadač alebo zariadenie.
+\end{itemize}
 
-$ sudo apt install --no-install-recommends -y \
-  libasio-dev \
-  libtinyxml2-dev
-  
-$ sudo apt install --no-install-recommends -y \
-  libcunit1-dev$
-\end{lstlisting}
-\vspace{3mm}
+\subsection{Problémy s ovládaním}
 
-\justifying
-\noindent
-Krok 4. Get ROS 2 code
-\begin{lstlisting}
-$ mkdir -p ~/ros2_foxy/src
+\begin{itemize}
+\item Ak máte problémy s ovládaním dronov, uistite sa, že ste v správnom režime (individuálny alebo skupinový) a že je vybraný dron, ktorý chcete ovládať.
+\item Ak problém pretrváva, skúste reštartovať TinkerBoard alebo resetovať drony.
+\item Ak žiadne z týchto riešení nepomôže, obráťte sa na náš tím podpory, ktorý vám poskytne ďalšiu pomoc.
+\end{itemize}
 
-$ cd ~/ros2_foxy
+\newpage
+\section{Zaver}
 
-$ wget https://raw.githubusercontent.com/ros2/ros2/foxy/ros2.repos
+Na záver možno konštatovať, že systém ovládania viacerých dronov Tello pomocou webovej aplikácie React a soketov bol úspešne vyvinutý. Systém využíva značky Aruco, ktoré umožňujú dronom zisťovať ich polohu a podľa toho sa navigovať. Webové rozhranie umožňuje používateľovi ovládať drony v individuálnom aj skupinovom režime s možnosťou prepínania medzi týmito dvoma režimami.
 
-$ vcs import src < ros2.repos
-\end{lstlisting}
-\vspace{3mm}
+V individuálnom režime môže používateľ ovládať vybraný dron pomocou rôznych ovládacích prvkov, ako napríklad dopredu, doľava, dozadu, doprava, pristáť, vzlietnuť, hore, dole, otočiť sa doľava, otočiť sa doprava a podobne. V skupinovom režime môže používateľ vidieť stav všetkých pripojených dronov v zozname ikon a prepínať medzi nimi na zobrazenie ich konkrétneho stavu.
 
-\justifying
-\noindent
-Krok 5. Install dependencies using rosdep and build the code in the workspace
-\begin{lstlisting}
-$ sudo rosdep init
+O komunikáciu medzi webovou aplikáciou a dronmi sa stará backend Node.js a každý dron je pripojený k doske Asus TinkerBoard, na ktorej beží program v jazyku Python s prideleným špecifickým ID. Systém bol dôkladne otestovaný a ukázalo sa, že funguje podľa očakávaní.
 
-$ rosdep update
-
-$ rosdep install --from-paths src --ignore-src --rosdistro foxy 
-    -y --skip-keys "console_bridge fastcdr fastrtps 
-    rti-connext-dds-5.3.1 urdfdom_headers"
-
-$ cd ~/ros2_foxy/
-
-$ colcon build --symlink-install
-\end{lstlisting}
-\subsection{Popis štruktúry programu}
-
-\begin{forest}
-  for tree={font=\sffamily, grow'=1,
-  folder indent=.9em, folder icons,
-  edge=densely dotted}
-  [multihunting
-    [launch
-          % [ar\char`_detection\char`_launch.py, is file]
-          [..., is file]
-          ]
-    [multihunting
-          % [\char`_\char`_init\char`_\char`_.py, is file]
-          % [commander.py, is file]
-          % [robot\char`_enable.py, is file]
-          % [robot\char`_enable\char`_follower.py, is file]
-          % % [robot-enable-follower2.py, is file]
-          % [robot\char`_enable\char`_lead.py, is file]
-          % [teleop\char`_keyboard.py, is file]
-          % [teleop\char`_keyboard\char`_listen.py, is file]
-          [..., is file]
-          ]
-    [protos
-          % [RobotSense.proto, is file]
-          % [RobotSenseCamera.proto, is file]
-          % [RobotSenseCameraLead.proto, is file]
-          [..., is file]
-          ]
-    [resource
-          % [multihunting, is file]
-          [..., is file]
-          ]
-    [worlds
-          [textures
-          [..., is file]]
-          [..., is file]
-          % [custom\char`_ar\char`_tag.wbt, is file]
-          ]
-      [README.md, is file]
-      [package.xml, is file]
-      [setup.cfg, is file]
-      [setup.py, is file]
-  ]
-\end{forest}
-  \vspace{3mm}
-
-  \justifying
-  \noindent
-The start point of this simulation is ar-detection-launch.py file located in launch directory. Popis hlavných priečinkov v balíku:
-
-worlds: miesto pre svetove súbory Webots (.wbt), ktorý definuje jedného alebo viacerých robotov a ich prostredie. Súbor .wbt niekedy závisí od externých súborov (.proto), ktore sa nachadza v protos a textúr, ktore v textures;
-
-protos: miesto pre prototypy robotov pre svetový súbor Webots;
-
-multihunting: umiestnene skripty Pythonu, ktoré je možné spustiť priamo a aj so spúšťacím súborom;
-
-launch: miesto pre všetky spúšťacie súbory v balíku;
-
-
-% \subsection{Popis správ pre systémového programátora}
-
-% Uviest texty správ, ktoré sa vypisujú pocas cinnosti programu, príciny týchto správ, popis programu cinnosti, ktoré je potrebné po týchto správach vykonat.
-
-\section{Použitie programu}
-Táto časť obsahuje popis postupu na otvorenie a spustenie simulácie.
-
-\subsection{Running procedure}
-
-Po inštalácii požadovaneHO softvéru môžete spustiť simulaciu. Otvorte terminál v priečinku pracovného priestoru a
-spustite nasledujúci príkazi:
-\begin{lstlisting}
-  $ colcon build
-  $ . install/setup.bash
-  $ ros2 run multihunting ar-detection-launch.py
-\end{lstlisting}
-
-Potom uvidíte, že táto platforma ROS2 spúšťa Webots a simulácia začne. Informácie o simulácii môžete sledovať v termináli.
-
-\subsection{Simmulation control}
-
-
-Užívateľ môže pomocou panela nástrojov riadiť proces simulácie. Panel s nástrojmi sa nachádza v hornej časti hlavného okna Webots. 
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[width=.70\textwidth,angle=0]{1.png}
-  \caption{Panel nástrojov Webots.}
-  \label{o:1}
-\end{figure}
-\vspace{3mm}
-
-\justifying
-\noindent
-Obsahuje nasledujúce prvky(obrazok 3-1.):
-\begin{enumerate}
-  \item Časová os simulácie a rýchlostná stupnica.
-  \item Resetovacie tlačidlo simulácie. Obnoviť počiatočný stav simulácie.
-  \item Vykonajte jeden krok.
-  \item Spustite simuláciu v reálnom čase.
-  \item Spustite simuláciu.
-  \item Spustite simuláciu čo najrýchlejšie bez grafiky.
-  \item Spustiť videozáznam aktuálnej simulácie.
-  \item Spustite záznam animácie HTML5.
-  \item Uložte aktuálny obrázok simulácie.
-\end{enumerate}
-
-% \textbf{Argumenty ovládačov.} 
-% Užívateľ môže pomocou stromu uzlov nastaviť argumenty pre radič.
-
-% \begin{figure}[ht!]
-%   \centering
-%   \includegraphics[width=.40\textwidth,angle=0]{2.png}
-%   \caption{Strom uzla.}
-%   \label{o:2}
-% \end{figure}
-\subsection{Error Messages}
-Môžu sa zobraziť nasledujúce varovania. V prvom prípade jednoducho upozorní na zmenu mierky textúry. Druhý a tretí typ varovaní sa vyskytujú, keď nastane problém s inicializáciou ovládača pre konkrétneho robota. Problém je vyriešený jednoduchým reštartovaním simulácie. Príklad:
-\begin{lstlisting}
-  WARNING: Texture image size of '/home/bohdan/ros2_ws/install/mybachelorproject/share/mybachelorproject/worlds/textures/loop.jpg' is not a power of two: rescaling it from 1080x1080 to 2048x2048.
-  WARNING: Failed to attach extern robot controller: no available "<extern>" robot controller named "follower_Robot_sense" found.
-  WARNING: WARNING: Failed to attach extern robot controller: no available "<extern>" robot controller named "follower_Robot_sense" found.
-\end{lstlisting}
-
+Celkovo možno povedať, že vyvinutý systém poskytuje efektívny a používateľsky prívetivý spôsob ovládania viacerých dronov Tello súčasne. Má potenciál uplatniť sa v rôznych odvetviach, ako je kinematografia, poľnohospodárstvo, pátracia a záchranná služba a ďalšie, kde sa vyžaduje spolupráca viacerých dronov pri plnení zložitých úloh.
 
 % \section{Popis vstupných, výstupných a~pracovných súborov} 
 

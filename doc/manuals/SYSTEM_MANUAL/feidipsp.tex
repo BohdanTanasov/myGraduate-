@@ -230,7 +230,7 @@ Ak chcete používať systém, postupujte podľa nasledujúcich krokov:
 \begin{verbatim}
 python dashboard.py
 \end{verbatim}
-
+ 
 \item Otvorte webový prehliadač a prejdite na adresu URL webovej aplikácie. Zvyčajne to bude \texttt{http://<server\_ip>:3000}.
 \item Použite webové rozhranie na ovládanie dronov v individuálnom alebo skupinovom režime.
 \end{enumerate}
@@ -244,6 +244,24 @@ Pôvodný skript djitellopy/tello.py som upravil a doplnil o čítanie stavu Tel
 Pre let je potrebné spustiť súbor main.py.
 
 Všetky transformácie matíc sa vykonávajú pomocou funkcií v transformations.py. Základný princíp spočíva v tom, že keď sú dve značky viditeľné súčasne, môžete vypočítať transformačnú maticu medzi týmito dvoma súradnicovými systémami. (Užitie viacerých vzoriek na spriemerovanie matíc medzi dvoma markermi.) Dron môže takto mapovať svoju cestu pomocou reťazca transformácií z globálneho počiatku, pričom ako základ sa použije prvý videný marker. Všetky transformácie súradníc sa vykonávajú v reálnom čase, globálne body sa potom uložia.
+
+\section{Riešenie problémov}
+
+Hoci sme venovali veľkú pozornosť tomu, aby bol náš systém čo najspoľahlivejší a bezchybný, pri jeho používaní sa môžete stretnúť s niektorými problémami. V tejto časti vám poskytneme niekoľko pokynov na riešenie bežných problémov, s ktorými sa môžete stretnúť.
+
+\subsection{Drony sa nepripájajú k systému}
+
+Ak máte problémy s pripojením dronov k systému, uistite sa, že sú správne zapnuté a pripojené k tej istej sieti WiFi ako ovládací panel. Tiež sa uistite, že IP adresa dronu je správne nastavená v konfiguračnom súbore.
+
+\subsection{Prístrojová doska nezobrazuje pozície dronov}
+
+Ak sa na prístrojovej doske nezobrazujú polohy dronov, skontrolujte, či sú značky Aruco správne umiestnené a v zornom poli kamier dronov. Taktiež sa uistite, že sa do prístrojového panela správne prenášajú údaje z kamery.
+
+\subsection{Systém nereaguje alebo padá}
+
+Ak systém nereaguje alebo padá, môže to byť spôsobené únikom pamäte alebo konfliktom zdrojov. Skúste reštartovať systém a ak problém pretrváva, skontrolujte, či sa v systémových protokoloch nenachádzajú chybové hlásenia. Na identifikáciu problému môže byť užitočné aj spustenie systému v režime ladenia.
+
+Ak sa počas používania systému vyskytnú iné problémy, pozrite si dokumentáciu alebo kontaktujte náš tím podpory, ktorý vám poskytne ďalšiu pomoc.
 
 \newpage
 \begin{flushleft}
