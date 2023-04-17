@@ -32,27 +32,36 @@ V tejto časti podrobne opíšeme realizáciu nášho projektu. Opíšeme archit
         \end{tikzpicture}
     \end{center}
 
-    \textbf{Description:}
+    \textbf{Popis:}
 
-    \textbf{main.py} - Contains the pyGame GUI and the camera image display. Uses the different keys on the keyboard to switch functions or control the drone.
+    \textbf{main.py} - Obsahuje grafické rozhranie pyGame a zobrazenie obrazu kamery. Používa rôzne klávesy na klávesnici na prepínanie funkcií alebo ovládanie dronu.
 
-    \textbf{tello.py} - Contains functions for communication with the drone and data readout.
+    \textbf{tello.py} - Obsahuje funkcie na komunikáciu s dronom a čítanie údajov.
 
-    \textbf{video\_writer.py} - Running on a separate thread, it captures video during the auto control and then outputs it.
+    \textbf{video\_writer.py} - Beží na samostatnom vlákne, zachytáva video počas automatického ovládania a potom ho vypúšťa.
 
-    \textbf{cam\_class.py} - Performs the image processing tasks (calibration, marker recognition), and the drone speed data is queued from here. Passes the read marker positions to the functions that process them.
+    \textbf{cam\_class.py} - Vykonáva úlohy spracovania obrazu (kalibrácia, rozpoznávanie značiek) a údaje o rýchlosti dronu sa odtiaľto zaraďujú do frontu. Odovzdáva načítané pozície značiek funkciám, ktoré ich spracúvajú.
 
-    \textbf{targeter.py} - Reads the functions corresponding to the marker sequence numbers from the specified CSV file and returns the control baseline vector.
+    \textbf{targeter.py} - Prečíta funkcie zodpovedajúce poradovým číslam značiek zo zadaného súboru CSV a vráti vektor kontrolnej základne.
 
-    \textbf{pid.py} - Contains a class implementing a numerical PID controller, it calculates the control rate values.
+    \textbf{pid.py} - Obsahuje triedu implementujúcu numerický PID regulátor, vypočítava hodnoty regulačného stupňa.
 
-    \textbf{marker\_class.py} - A class that stores all the data for markers. During data collection, it counts and finally writes the collected positions to an NPZ file.
+    \textbf{marker\_class.py} - Trieda, ktorá uchováva všetky údaje pre značky. Počas zberu údajov počíta a nakoniec zapisuje zozbierané pozície do súboru NPZ.
+ 
+    \textbf{transformations.py} - Implementuje transformácie súradnicového systému a obsahuje funkcie na konverziu vektorov rotácie.
 
-    \textbf{transformations.py} - Implements coordinate system transformations and contains functions for rotation vector conversions.
+ 
+\subsection{Ovládanie drona}
+Dron Tello sa ovláda pomocou kombinácie softvérových programov, ktoré s ním komunikujú prostredníctvom pripojenia Wi-Fi (obrázok 4-1). Na nízkoúrovňovú komunikáciu medzi dronom a riadiacim počítačom sa používa knižnica Tello Python, tello.py.
 
-
-\subsection{Programy, ktoré ovládajú dron}
-Dron Tello sa ovláda pomocou kombinácie softvérových programov, ktoré s ním komunikujú prostredníctvom pripojenia Wi-Fi. Na nízkoúrovňovú komunikáciu medzi dronom a riadiacim počítačom sa používa knižnica Tello Python, tello.py.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.70\textwidth,angle=0]{figure 4-3.pdf}
+    \caption{Schéma procesu pripojenia dronu.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
+    \label{o:4-3} 
+\end{figure}  
 
 Knižnica tello.py poskytuje množstvo funkcií, ktoré možno použiť na odosielanie príkazov do dronu a prijímanie údajov z neho. Medzi tieto funkcie patria 
 $takeoff()$, $land()$, $move\_left()$, $move\_right()$, $move\_forward()$, $move\_backward()$, \break $rotate\_clockwise()$, $rotate\_counter\_clockwise()$ 
@@ -64,8 +73,8 @@ Skript na strane servera používa knižnicu tello.py na odosielanie príkazov d
 
 Celkovo kombinácia tello.py a skriptu na strane servera poskytuje výkonnú platformu na ovládanie dronu Tello z webovej aplikácie. Vďaka možnosti odosielať širokú škálu príkazov a získavať podrobné údaje z dronu.
 
-\subsection{Programy, ktoré spracúvajú obrázky}
-S riadením dronov úzko súvisí, ale viac sa zaoberá spracovaním obrazu, program cam\_class.py, ktorého hlavná funkcia je zodpovedná za rozpoznávanie značiek ArUco. ArUco markery sa zisťujú pomocou vstavanej funkcie OpenCV cv2.aruco.detectMarkers(). Tá nájde kódy v načítanom zväzku značiek po adaptívnej segmentácii aplikovanej na obraz v odtieňoch sivej a vráti ich rohové body v pixeloch a ich poradové číslo. Na výpočet skutočnej trojrozmernej polohy značiek na základe matíc kamery sa používa už spomínaná transformácia PnP. Výsledné polohy s ich poradovým číslom značky sa môžu odoslať na ďalšie spracovanie (časť 4.4) alebo použiť na automatickú navigáciu dronu.
+\subsection{Spracovanie obrázkov}
+S riadením dronov úzko súvisí, ale viac sa zaoberá spracovaním obrazu, program cam\_class.py, ktorého hlavná funkcia je zodpovedná za rozpoznávanie značiek ArUco. ArUco značky sa zisťujú pomocou vstavanej funkcie OpenCV cv2.aruco.detectMarkers(). Tá nájde kódy v načítanom zväzku značiek po adaptívnej segmentácii aplikovanej na obraz v odtieňoch sivej a vráti ich rohové body v pixeloch a ich poradové číslo. Na výpočet skutočnej trojrozmernej polohy značiek na základe matíc kamery sa používa už spomínaná transformácia PnP. Výsledné polohy s ich poradovým číslom značky sa môžu odoslať na ďalšie spracovanie (časť 4.4) alebo použiť na automatickú navigáciu dronu.
 
 Program je určený na navigáciu dronu Tello pomocou značiek umiestnených na zemi. To sa dosiahne použitím knižnice OpenCV na detekciu značiek vo videozázname z kamery dronu.
 \begin{mypython}[caption={Inicializácia parametrov detekcie značiek OpenCV},label=CL-3]
@@ -88,7 +97,7 @@ Program je určený na navigáciu dronu Tello pomocou značiek umiestnených na 
 \end{mypython}
 
 Program najprv inicializuje kameru a nastaví tok videa. Potom pomocou slučky nepretržite zachytáva snímky z videoprenosu a spracováva ich. Pre každú snímku program používa vstavané funkcie OpenCV na detekciu značiek a odhad ich polohy v 3D priestore.
-\begin{mypython}[caption={Detekcia markera a vypočítanie polohy},label=CL-4]
+\begin{mypython}[caption={Detekcia značky a vypočítanie polohy},label=CL-4]
     while True:
     # Capture frame from video stream
     frame = stream.read()
@@ -119,19 +128,19 @@ Na ďalšie zlepšenie presnosti a spoľahlivosti detekcie a sledovania značiek
 
 Celkovo program poskytuje spoľahlivý a efektívny spôsob navigácie dronu Tello pomocou značkovačov. Použitím knižnice OpenCV na detekciu a sledovanie značiek v reálnom čase a implementáciou proporcionálneho riadiaceho algoritmu na úpravu orientácie a výšky dronu je program schopný navigovať dron s vysokou mierou presnosti a precíznosti.
 
-\subsection{Programy na spracovanie údajov}
+\subsection{Spracovanie údajov}
 Spracovanie priestorových bodov a rotácií získaných z programov na spracovanie obrazu z kamery, t. j. zber údajov, vykonáva program marker\_class.py. Potrebné transformácie, ktoré sú opísané vyššie, vykonávajú funkcie transformations.py.
 \subsubsection{Ukladanie údajov o značkách}
 Na spracovanie sa môžu odovzdať len údaje značiek, ktoré nemajú žiadny zo svojich vrcholov v pixelovom rámci obrazu. Definícia hrany je 2-2-2-2 \% priesečník na všetkých štyroch stranách obrazu kamery. Značkovače umiestnené na okrajoch poskytujú po odstránení skreslenia jednak nepresnejšie údaje, jednak môžu spôsobiť neistotu označenia vonkajších okrajov 2D kódu značkovača počas detekcie značkovača, ako je to vidieť na obrázku 20.
 %TODO: obrazok
 
-V triede markers sú vlastnosti markerov, ktoré ste doteraz videli, uložené v rôznych zoznamoch, ako napríklad:
+V triede markers sú vlastnosti značiek, ktoré ste doteraz videli, uložené v rôznych zoznamoch, ako napríklad:
 \begin{itemize}
     \item \textbf{ids}: počet už použitých značiek
     \item \textbf{tvec\_origin}: "markerorigos" v globálnom súradnicovom systéme
-    \item \textbf{rvec\_origin}: otočenie súradnicového systému markerov vzhľadom na globálny
-    \item \textbf{dRot}: matica rotácie od daného markera ku globálnemu.
-    \item \textbf{allow\_use}: pomocná premenná, ktorá umožňuje použitie daného markera pri priemerovaní, akonáhle sa zozbiera dostatočný počet vzoriek, môže sa započítať
+    \item \textbf{rvec\_origin}: otočenie súradnicového systému značiek vzhľadom na globálny
+    \item \textbf{dRot}: matica rotácie od danéj značky ku globálnemu.
+    \item \textbf{allow\_use}: pomocná premenná, ktorá umožňuje použitie danéj značky pri priemerovaní, akonáhle sa zozbiera dostatočný počet vzoriek, môže sa započítať
     \item \textbf{tvec\_min, tvec\_max}: pomocné premenné na filtrovanie výpočtu priemeru
 \end{itemize}
 
@@ -169,6 +178,19 @@ Ak už má značka vzorku na autorizáciu, možno ju spočítať pomocou funkcie
     return camera_rel_marker
 \end{mypython}
 \subsection{Webová aplikácia}
+Vývoj webovej aplikácie je základnou súčasťou riadiaceho systému pre viacero dronov Tello. Táto webová aplikácia slúži ako používateľské rozhranie na ovládanie dronov v individuálnom aj skupinovom režime. S cieľom zabezpečiť bezproblémové a používateľsky prívetivé prostredie je webová aplikácia navrhnutá s moderným a intuitívnym rozhraním s využitím najnovších technológií vývoja webových aplikácií.
+
+Webová aplikácia je rozdelená na dve hlavné zložky: frontend a backend(obrázok 4-2). Frontend je zodpovedný za prezentáciu používateľského rozhrania a obsluhu interakcie používateľa, zatiaľ čo backend zabezpečuje komunikáciu medzi webovou aplikáciou a dronmi.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.50\textwidth,angle=0]{figure 4-2.pdf}
+    \caption{Schéma rozdelenia webovej aplikácie.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
+    \label{o:4-2}
+\end{figure}  
+
 \subsubsection{Frontend}
 Webová aplikácia React sa skladá z viacerých komponentov, ktoré spolupracujú pri ovládaní dronov. Keď sa používateľ prihlási do aplikácie, zobrazí sa mu ovládací panel, na ktorom sú zobrazené dostupné drony a ich stav. Informačný panel sa aktualizuje v reálnom čase pomocou webových soketov, aby odrážal zmeny stavu dronov.
 
@@ -184,7 +206,16 @@ Komponenty Material UI, ktoré sa v aplikácii používajú, poskytujú konziste
 
 Vlastná komponenta BatteryGauge sa používa na zobrazenie aktuálnej úrovne nabitia batérie dronu vizuálne príťažlivým a zrozumiteľným spôsobom. Komponent ControlBlock vykresľuje niekoľko komponentov NavigationButton, ktoré umožňujú používateľovi ovládať pohyb dronu a ďalšie funkcie.
 
-Nakoniec sa aplikácia pripája k serveru WebSocket pomocou knižnice socket.io-client. To umožňuje komunikáciu medzi aplikáciou a dronom v reálnom čase, vďaka čomu môže používateľ ovládať pohyb dronu a prijímať aktualizácie o jeho stave. Aplikácia počúva rôzne udalosti zo servera, ako napríklad "zmena výšky" a "zmena stavu batérie", a podľa toho aktualizuje stav príslušných premenných.
+Nakoniec sa aplikácia pripája k serveru WebSocket pomocou knižnice socket.io-client. To umožňuje komunikáciu medzi aplikáciou a dronom v reálnom čase, vďaka čomu môže používateľ ovládať pohyb dronu a prijímať aktualizácie o jeho stave. Aplikácia počúva rôzne udalosti zo servera, ako napríklad "zmena výšky" a "zmena stavu batérie", a podľa toho aktualizuje stav príslušných premenných. Celá táto infraštruktúra je znázornená na obrázku 4-3.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.99\textwidth,angle=0]{figure 4-1.pdf}
+    \caption{Schéma webovej aplikácie.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
+    \label{o:4-1}
+\end{figure}  
 
 \subsubsection{Backend}
 Server Node.js poskytuje backendové funkcie pre webovú aplikáciu na ovládanie dronov. Server je vytvorený pomocou frameworku Express.js a používa knižnicu Socket.IO na vytvorenie spojenia v reálnom čase medzi webovou aplikáciou a dronmi.

@@ -1,7 +1,7 @@
 % !TeX root=tukedip.tex
 % !TeX encoding = UTF-8
 % !TeX spellcheck = sk_SK
-\section{Prehľad literatúry}
+\section{Analýza súčasného stavu}
 Pred výberom metódy optického polohovania a navigácie sme museli preskúmať rôzne možnosti. Pozreli sme sa na metódy, ktoré by mohli byť vhodné na navigáciu dronov. Skúmala sa ich použiteľnosť pre mikrodrony.
 
 \subsection{Optický princíp senzorov}
@@ -20,37 +20,41 @@ Jedným z najdôležitejších úloh mobilných robotov je schopnosť vyhnúť s
 
 Kamera poskytuje bohaté vizuálne informácie o prostredí a umožňuje robotom získavať informácie o prekážkach a teréne. Existujú rôzne spôsoby, ako využiť obraz z kamery pre navigáciu a vyhýbanie sa prekážkam.
 
-\subsubsection{S vylepšenou neurónovou sieťou}
+\subsubsection{Prístup s vylepšenou neurónovou sieťou}
 Jednou zo skúmaných metód na vyhýbanie sa prekážkam a orientáciu pomocou kamery bolo strojové učenie pomocou neurónových sietí. Nakoniec však bola zavrhnutá kvôli časovo a hardvérovo náročným procesom učenia. Táto metóda zahŕňa použitie naučenej neurónovej siete na priradenie približných hodnôt hĺbky každému pixelu na základe polohy objektov z jedného obrazu. Vzory sa dajú naučiť z dvojice LIDAR a digitálnych kamier umiestnených vedľa seba. Zadaním dostatočného počtu týchto naučených dvojíc môže neurónová sieť vytvoriť vzťah medzi pixelmi na obrázkoch a hodnotami hĺbky získanými z LIDAR-u alebo stereokamery.
 
 Sieť sa môže učiť pomocou učenia založeného na LIDAR-e s dohľadom a učenia založeného na stereopároch bez dohľadu na základe pravdepodobnostného princípu. Učenie pod dohľadom je však často príliš prísne a učenie bez dohľadu poskytuje nepresné výsledky. Preto sa odporúča používať poloprevádzkové učenie alebo porovnávať výsledky získané pomocou siete s kalibrovaným systémom detekcie hĺbky počas prevádzky \citep{xie2016edge}.
 
-Táto metóda získava hodnoty hĺbky z okolia a umiestnenia objektov (množiny pixelov) a vytvára mapu hĺbky podobnú tej, ktorá je znázornená na obrázku 1. Jej presnosť je zatiaľ experimentálna a takýto systém je stále vystavený mnohým chybám. Napriek tomu bol použitý v aplikáciách na riadenie dronov. Hĺbkové mapy na obrázku 1 ilustrujú rozdiel medzi rôznymi metódami a presnosť tejto metódy \citep{ikeoka2018depth, xie2016edge}.
+Táto metóda získava hodnoty hĺbky z okolia a umiestnenia objektov (množiny pixelov) a vytvára mapu hĺbky podobnú tej, ktorá je znázornená na obrázku 2-1. Jej presnosť je zatiaľ experimentálna a takýto systém je stále vystavený mnohým chybám. Napriek tomu bol použitý v aplikáciách na riadenie dronov. Hĺbkové mapy na obrázku 1 ilustrujú rozdiel medzi rôznymi metódami a presnosť tejto metódy \citep{ikeoka2018depth, xie2016edge}.
 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=.85\textwidth,angle=0]{figure 2-1.pdf}
     \caption{Načítaný obraz (vľavo), skutočná mapa hĺbky na základe senzorov (vľavo uprostred) a napokon mapa hĺbky vytvorená pomocou Gaussovho modelu (vpravo uprostred) a Laplaceovho modelu (vpravo)}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: Khan, F., https://doi.org/10.3390/s20082272)}
     \label{o:2-1}
 \end{figure}
 % Khan, F.; Salahuddin, S.; Javidnia, H. Deep Learning-Based Monocular Depth Estimation Methods—A State-of-the-Art Review. Sensors 2020, 20, 2272. https://doi.org/10.3390/s20082272
 
-Neurónová sieť berie do úvahy niekoľko faktorov:
+Neurónová sieť berie do úvahy niekoľko faktorov(Obrázok. 2-2):
 \begin{itemize}
-    \item \textbf{oklúzia}
-    \item \textbf{relatívna veľkosť}
-    \item \textbf{vrhaný tieň}
-    \item \textbf{tieňovanie}
-    \item \textbf{vzdialenosť od horizontuň}
-    \item \textbf{gradient textúry}
-    \item \textbf{lineárna perspektíva}
+    \item \textbf{oklúzia;}
+    \item \textbf{relatívna veľkosť;}
+    \item \textbf{vrhaný tieň;}
+    \item \textbf{tieňovani;}
+    \item \textbf{vzdialenosť od horizontuň;}
+    \item \textbf{gradient textúry;}
+    \item \textbf{lineárna perspektíva.}
 \end{itemize}
-Učenie siete je časovo a zdrojovo náročné. Po vyškolení je výzvou zabezpečiť, aby sieť fungovala v reálnom čase na riadenie dronov bez toho, aby sa stratilo príliš veľa údajov v dôsledku zrýchlenia kalibrácie, čo môže viesť ku kolíziám. Počas pomalého letu sa sieť stále dokáže vyhýbať prekážkam, ale považuje ich len za súbor bodov s relatívnou polohou, nie za presné obrysy \citep{aabed2012depth}.
+Učenie siete je časovo a zdrojovo náročné. Po natrénovaní je výzvou zabezpečiť, aby sieť fungovala v reálnom čase na riadenie dronov bez toho, aby sa stratilo príliš veľa údajov v dôsledku zrýchlenia kalibrácie, čo môže viesť ku kolíziám. Počas pomalého letu sa sieť stále dokáže vyhýbať prekážkam, ale považuje ich len za súbor bodov s relatívnou polohou, nie za presné obrysy \citep{aabed2012depth}.
 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=.55\textwidth,angle=0]{figure 2-2.pdf}
     \caption{Faktory zohľadňované pri monokulárnom vnímaní hĺbky}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: Bogdanova (2016). Depth Perception of Surgeons in Minimally Invasive Surgery. Surgical Innovation. 23. 10.1177/1553350616639141.)}
     \label{o:2-2}
 \end{figure}
 % Bogdanova, Rositsa & Boulanger, Pierre & Zheng, Bin. (2016). Depth Perception of Surgeons in Minimally Invasive Surgery. Surgical Innovation. 23. 10.1177/1553350616639141. 
@@ -64,6 +68,8 @@ V kontexte bezpilotných lietadiel môže byť princíp stereočočočky užito�
     \centering
     \includegraphics[width=.85\textwidth,angle=0]{figure 2-3.pdf}
     \caption{Model virtuálnej kamery. (a) Model virtuálnej kamery systému stereovízie založeného na plochej prizme. (b) Modifikovaný model dierkovej virtuálnej kamery systému stereovízie založeného na voľnej prizme.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: Cui. (2019). Design of a Single-Lens Freeform-Prism-Based Distortion-Free Stereovision System. IEEE Photonics Journal. PP. 1-1. 10.1109/JPHOT.2019.2924458)}
     \label{o:2-3}
 \end{figure}
 %Cui, Xiaoyu & Wang, Liqian & Ren, Yuetian & Chen, Shuo & Zhao, Yue & Lim, Kah-Bin & Gong, Tianxing. (2019). Design of a Single-Lens Freeform-Prism-Based Distortion-Free Stereovision System. IEEE Photonics Journal. PP. 1-1. 10.1109/JPHOT.2019.2924458. 
@@ -76,13 +82,15 @@ Vzhľadom na tieto problémy je pochopiteľné, prečo princíp stereosnímania 
 
 Na záver možno konštatovať, že hoci je princíp stereosnímania výkonnou metódou na vnímanie hĺbky a úspešne sa uplatňuje v rôznych oblastiach, jeho použitie v kontexte dronov, ako je Tello, je obmedzené z dôvodu použitia iba jednej kamery. V dôsledku toho môže byť potrebné použiť iné techniky snímania v spojení s týmto princípom, aby sa dosiahla presná a spoľahlivá navigácia dronov.
 
-\subsubsection{Na základe pohyblivého obrazu kamery}
+\subsubsection{Prístup na základe pohyblivého obrazu kamery}
 Ďalším populárnym prístupom k dosiahnutiu vnímania hĺbky v bezpilotných lietadlách je použitie metód založených na snímaní pohyblivou kamerou. Táto metóda zahŕňa snímanie sekvencie obrazov pomocou jednej kamery namontovanej na dron a následné použitie algoritmov na odhad informácií o hĺbke na základe pohybu kamery.
 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=.75\textwidth,angle=0]{figure 2-4.pdf}
     \caption{Vľavo: Tradičné stereofónne nastavenie predpokladá, že aspoň dva uhly pohľadu zachytávajú scénu v rovnakom čase. Vpravo: Uvažujeme o nastavení, pri ktorom sa kamera aj objekt pohybujú.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: https://ai.googleblog.com/2019/05/moving-camera-moving-people-deep.html)}
     \label{o:2-4}
 \end{figure}
 %https://ai.googleblog.com/2019/05/moving-camera-moving-people-deep.html
@@ -103,14 +111,16 @@ Určovanie polohy pomocou značiek je populárna metóda na presný odhad polohy
 
 Proces používania značiek Aruco na určovanie polohy zahŕňa detekciu značiek v obraze kamery dronu, použitie známej veľkosti a polohy značiek na výpočet polohy a orientácie dronu vzhľadom na značky a následné použitie týchto informácií na navigáciu dronu na požadované miesto alebo vykonanie konkrétnej úlohy.
 
-V porovnaní s predchádzajúcimi metódami, ktoré ste spomenuli, má určovanie polohy pomocou markerov tú výhodu, že je veľmi presné a spoľahlivé, a to aj v náročných podmienkach. Nevyžaduje si ani samostatné nastavenie stereokamery alebo zložité trénovanie neurónovej siete, čo z nej robí relatívne jednoduchú a efektívnu metódu na implementáciu. 
+V porovnaní s predchádzajúcimi metódami, ktoré ste spomenuli, má určovanie polohy pomocou značiek tú výhodu, že je veľmi presné a spoľahlivé, a to aj v náročných podmienkach. Nevyžaduje si ani samostatné nastavenie stereokamery alebo zložité trénovanie neurónovej siete, čo z nej robí relatívne jednoduchú a efektívnu metódu na implementáciu. 
 
-Vo svojej predchádzajúcej práci som použil metódu určovania polohy pomocou markerov s markermi Aruco na detekciu a sledovanie polohy robota v kontrolovanom prostredí. Výsledky ukázali, že metóda výborne funguje v rôznych situáciách a dokáže poskytnúť presné a spoľahlivé odhady polohy robota. Pokiaľ ide o presnosť nameraných polôh značiek, zistili sme, že sme mohli zistiť značky v širokom rozsahu s priemernou presnosťou ±0,05 m, a to aj v prípade malých bočných značiek (0,03 m). 
+Vo svojej predchádzajúcej práci som použil metódu určovania polohy pomocou značiek s značkami Aruco na detekciu a sledovanie polohy robota v kontrolovanom prostredí. Výsledky ukázali, že metóda výborne funguje v rôznych situáciách a dokáže poskytnúť presné a spoľahlivé odhady polohy robota. Pokiaľ ide o presnosť nameraných polôh značiek, zistili sme, že sme mohli zistiť značky v širokom rozsahu s priemernou presnosťou ±0,05 m, a to aj v prípade malých bočných značiek (0,03 m). 
 
 \begin{figure}[ht!]
     \centering 
     \includegraphics[width=.75\textwidth,angle=0]{figure 2-5.pdf}
     \caption{Pravdepodobnosť detekcie značky v závislosti od jej oblasti na obrázku pre 3 rôzne uhly naklonenia: 0°, 45°, 70°.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
     \label{o:2-5}
 \end{figure}
 
@@ -118,12 +128,13 @@ Vo svojej predchádzajúcej práci som použil metódu určovania polohy pomocou
     \centering
     \includegraphics[width=.75\textwidth,angle=0]{figure 2-6.pdf} 
     \caption{Závislosť vplyvu veľkosti oblasti značky na chybe pri zisťovaní jej polohy.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
     \label{o:2-6}
 \end{figure}
 
-V mojej súčasnej diplomovej práci budeme používať rovnakú metódu na odhad polohy dronu vybaveného jednou kamerou. Keďže metóda sa spolieha na detekciu značiek na snímkach z kamery, je dôležité zabezpečiť, aby boli značky na snímkach ľahko rozlíšiteľné a viditeľné. Ukázalo sa, že markery Aruco dobre fungujú v rôznych prostrediach a za rôznych svetelných podmienok, a preto sú vhodnou voľbou pre našu prácu \citep{Cheng2017}.
+V mojej súčasnej diplomovej práci budeme používať rovnakú metódu na odhad polohy dronu vybaveného jednou kamerou. Keďže metóda sa spolieha na detekciu značiek na snímkach z kamery, je dôležité zabezpečiť, aby boli značky na snímkach ľahko rozlíšiteľné a viditeľné. Ukázalo sa, že značky Aruco dobre fungujú v rôznych prostrediach a za rôznych svetelných podmienok, a preto sú vhodnou voľbou pre našu prácu \citep{Cheng2017}.
 
-\newpage
 V porovnaní s predchádzajúcimi metódami, o ktorých sme hovorili, je výhodou metódy určovania polohy pomocou značiek vysoká presnosť a spoľahlivosť. Jednou z potenciálnych nevýhod používania značiek je však to, že sa musia do prostredia umiestniť vopred, čo nemusí byť praktické vo všetkých situáciách. Okrem toho sa samotné markery môžu zakryť alebo premiestniť, čo by mohlo spôsobiť problémy s dronom Napriek týmto obmedzeniam som sa rozhodol použiť túto metódu vo svojej práci kvôli jej overenej presnosti a robustnosti.
 
 \subsection{WebSocket}
@@ -131,9 +142,9 @@ WebSocket je protokol, ktorý poskytuje plne duplexný komunikačný kanál pros
 
 V kontexte tohto projektu poskytuje použitie technológie WebSocket spôsob komunikácie dronu so serverom v reálnom čase. To je obzvlášť dôležité pre aplikácie, ktoré vyžadujú, aby dron rýchlo reagoval na príkazy alebo napríklad streamovanie videa v reálnom čase.
 
-Jednou z hlavných výhod používania technológie WebSocket je jej nízka latencia. Na rozdiel od tradičných požiadaviek HTTP, ktoré si vyžadujú samostatnú požiadavku a odpoveď pre každú informáciu vymieňanú medzi klientom a serverom, spojenia WebSocket zostávajú otvorené a umožňujú nepretržitú komunikáciu medzi nimi. To umožňuje rýchlejšiu a efektívnejšiu komunikáciu, ktorá je ideálna pre aplikácie v reálnom čase.
+Jednou z hlavných výhod používania technológie WebSocket je jej nízka latencia. Na rozdiel od tradičných požiadaviek HTTP, ktoré si vyžadujú samostatnú požiadavku a odpoveď pre každú informáciu vymieňanú medzi klientom a serverom, spojenia WebSocket zostávajú otvorené a umožňujú nepretržitú komunikáciu medzi nimi. To umožňuje rýchlejšiu a efektívnejšiu komunikáciu, ktorá je ideálna pre aplikácie v reálnom čase \citep{Guan2019}.
 
-Existuje niekoľko alternatívnych technológií, ktoré možno použiť na komunikáciu v reálnom čase, napríklad dlhé dotazovanie, udalosti odosielané serverom (SSE) a WebRTC. Dlhé dotazovanie zahŕňa nepretržité dotazovanie servera na aktualizácie, zatiaľ čo SSE umožňuje serveru posielať aktualizácie klientovi. WebRTC je komunikačný protokol typu peer-to-peer, ktorý umožňuje prenos zvuku a videa v reálnom čase.
+Existuje niekoľko alternatívnych technológií, ktoré možno použiť na komunikáciu v reálnom čase, napríklad dlhé dotazovanie, udalosti odosielané serverom (SSE) a WebRTC. Dlhé dotazovanie zahŕňa nepretržité dotazovanie servera na aktualizácie, zatiaľ čo SSE umožňuje serveru posielať aktualizácie klientovi. WebRTC je komunikačný protokol typu peer-to-peer, ktorý umožňuje prenos zvuku a videa v reálnom čase \citep{Guan2019}.
 
 WebSocket je však často uprednostňovanou voľbou na komunikáciu v reálnom čase vďaka nízkej latencii a jednoduchému používaniu. Okrem toho je WebSocket široko podporovaný modernými webovými prehliadačmi a možno ho ľahko integrovať do webových aplikácií pomocou populárnych rámcov, ako sú Node.js alebo Django.
 
