@@ -1,4 +1,4 @@
-\section{Design}
+\section{Navrh}
 V tejto časti sa budeme zaoberať návrhom nášho systému riadenia dronov vrátane hardvérových a softvérových komponentov a ich vzájomnej interakcie. Cieľom je poskytnúť komplexný prehľad návrhu systému vrátane technických špecifikácií a funkcií, aby ostatní mohli systém pochopiť a replikovať. Budeme tiež diskutovať o rôznych konštrukčných úvahách, ktoré boli súčasťou vývoja systému, a o tom, ako sme ich riešili.
 
 \subsection{Výber dronu}
@@ -6,12 +6,14 @@ Po preskúmaní funkcií možných programovateľných dronov je najlepším zar
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=.45\textwidth,angle=0]{figure 3-1.pdf}
-    \caption{Obrázok dronu DJI Tello zobrazujúci jeho komponenty.}
+    \includegraphics[width=.40\textwidth,angle=0]{figure 3-1.pdf}
+    \caption{Dron DJI Tello a jeho komponenty.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: www.ryzerobotics.com)}
     \label{o:3-1}
 \end{figure} 
 
-Dron Tello možno naprogramovať pomocou rôznych softvérových vývojových súprav (SDK). Jedným z populárnych SDK na programovanie dronu Tello je DJI Tello SDK, ktorý poskytuje súbor API na ovládanie letu, kamery a ďalších funkcií dronu. Súbor Tello SDK je k dispozícii pre viaceré programovacie jazyky vrátane jazykov Python, Java a Swift, vďaka čomu je prístupný vývojárom s rôznym vzdelaním a úrovňou zručností .
+Dron Tello možno naprogramovať pomocou rôznych softvérových vývojových súprav (SDK). Jedným z populárnych SDK na programovanie dronu Tello je DJI Tello SDK, ktorý poskytuje súbor API na ovládanie letu, kamery a ďalších funkcií dronu. Súbor Tello SDK je k dispozícii pre viaceré programovacie jazyky vrátane jazykov Python, Java a Swift, vďaka čomu je prístupný vývojárom s rôznym vzdelaním a úrovňou zručností \citep{TelloSDK}.
 
 Okrem DJI Tello SDK je k dispozícii aj niekoľko SDK a knižníc tretích strán na programovanie dronu Tello vrátane knižnice TelloPy pre Python a knižnice Node.js Tello pre Node.js. Tieto knižnice poskytujú ďalšie funkcie na ovládanie dronu a spracovanie údajov z jeho senzorov a môžu byť užitočné pre pokročilejšie projekty .
 
@@ -28,6 +30,8 @@ Backendový server je vytvorený pomocou Node.js, populárneho prostredia na sp�
     \centering
     \includegraphics[width=.90\textwidth,angle=0]{figure 3-2.pdf}
     \caption{Schéma návrhu systému: Webová aplikácia vytvorená pomocou React komunikuje s backendovým serverom Node.js, ktorý posiela príkazy a prijíma telemetrické údaje z dronov pripojených k ASUS Tinkerboard.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
     \label{o:3-2}
 \end{figure}  
 
@@ -38,7 +42,7 @@ Nakoniec systém využíva aj značky Aruco na zisťovanie polohy a orientácie 
 V dokumentácii poskytnutej výrobcom je podrobne opísané, ako ovládať dron pomocou programu Python. [19] Po pripojení k vlastnej sieti wifi dronu je potrebné otvoriť spojenie UDP na ovládanie dronu prostredníctvom adresy 192.168.10.1 a portu 8889. Pred spustením ovládania je vždy potrebné poslať dronu príkaz "command", ktorý sa prepne do stavu, v ktorom čaká na príkazy \citep{TelloSDK}. 
 Z dronu je tiež možné čítať stav letového ovládača, ktorý využíva aj firmvér zariadenia, otvorením servera 0.0.0.0 na porte 8890. Ten nebol súčasťou vyššie uvedenej knižnice GitHub, preto sme ho do programu pridali. Otvorili sme nové spojenie so soketom UDP so spomínaným serverom a údajmi na porte bežiacim v samostatnom vlákne, podobne ako pri prijímaní odpovedí z kontroly dronu na pozadí. 
 
-\begin{mypython}[caption={Úryvok kódu 1 ukazuje obsluhu vlákna obsiahnutú v jazyku Python },label=SO-test]
+\begin{mypython}[caption={ukazuje obsluhu vlákna obsiahnutú v jazyku Python },label=SO-test]
     # Run Tello command responses UDP receiver on background
     client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
     response_receiver_thread = Thread(target=Tello.udp_response_receiver)
@@ -53,7 +57,7 @@ Z dronu je tiež možné čítať stav letového ovládača, ktorý využíva aj
     threads_initialized = True
 \end{mypython} 
 
- 
+  
 
 Threading library, ktorý možno priradiť konkrétnej funkcii, 
 ktorá bude bežať na vlákne oddelenom od hlavného programu. 
@@ -65,16 +69,16 @@ je zapnutá, budete musieť ukončenia vlákien riešiť samostatne \citep{Tello
 Stavy vysiela dron na spomínanom serveri, ich čítanie nebude spomaľovať čítanie obrazu z kamery dronu, pretože dron bude vysielať reťazec stavov po vstupe do príkazového režimu, aj keď ho nebudeme čítať. V oficiálnej dokumentácii je uvedený formát, v ktorom dron vysiela stavy svojich senzorov. Vysiela jeden súvislý, stredníkmi ohraničený textový súbor ASCII cez bezdrôtové spojenie UDP na prijímajúci server v nasledujúcom formáte: \pyth{"pitch:%d;roll:%d;yaw:%d;vgx:%d;vgy:%d;vgz:%d;templ:%d;temph:%d;tof:%d;h:%d;bat:%d; baro:%.2f;time:%d;agx:%.2f;agy:%.2f;agz:%.2f;\r\n"}
 Kde sú uvedené hodnoty jednotlivých stavov (interpretácia súradníc je uvedená na obrázku 8):
 \begin{itemize}
-\item \textbf{pitch, roll, yaw}: vlastná rotácia dronu okolo osí x, y a z, meraná ako celý uhol, kladný v smere hodinových ručičiek, podľa pravidla ľavej ruky 
-\item \textbf{vgx, vgy, vgz}: rýchlosť dronu nastavená v smeroch x, y, z v cm/s (nie sú to skutočné merateľné hodnoty rýchlosti, ale hodnota priradená k rýchlosti dronu, ktorá sa mení počas riadenia). 
-\item \textbf{temp}: najnižšia teplota v C° 
+\item \textbf{pitch, roll, yaw}: vlastná rotácia dronu okolo osí x, y a z, meraná ako celý uhol, kladný v smere hodinových ručičiek, podľa pravidla ľavej ruky;
+\item \textbf{vgx, vgy, vgz}: rýchlosť dronu nastavená v smeroch x, y, z v cm/s (nie sú to skutočné merateľné hodnoty rýchlosti, ale hodnota priradená k rýchlosti dronu, ktorá sa mení počas riadenia);
+\item \textbf{temp}: najnižšia teplota v C°; 
 \item \textbf{temph}: najvyššia teplota v C° 
-\item \textbf{tof}: výška kamery času letu v cm v spodnej časti dronu 
-\item \textbf{h}: výška v cm 
-\item \textbf{bat}: zostávajúca kapacita batérie dronu v celých percentách 
-\item \textbf{baro}: hodnota výšky na základe nainštalovaného barometra v cm 
-\item \textbf{time}: čas zapnutia motorov (čas letu) v sekundách 
-\item \textbf{agx, brain, agz}: zrýchlenie dronu v smere x, y, z zo snímača zrýchlenia interpretované v 0,001 g, kde g je gravitačné zrýchlenie 
+\item \textbf{tof}: výška kamery času letu v cm v spodnej časti dronu; 
+\item \textbf{h}: výška v cm; 
+\item \textbf{bat}: zostávajúca kapacita batérie dronu v celých percentách; 
+\item \textbf{baro}: hodnota výšky na základe nainštalovaného barometra v cm; 
+\item \textbf{time}: čas zapnutia motorov (čas letu) v sekundách; 
+\item \textbf{agx, brain, agz}: zrýchlenie dronu v smere x, y, z zo snímača zrýchlenia interpretované v 0,001 g, kde g je gravitačné zrýchlenie. 
 \end{itemize}
 
 Toto sa dá rozdeliť na pole pozdĺž stredníkov pomocou funkcie Python string.split("; ") a potom sa hodnoty za dvojbodkou v poli prevedú na číselný typ v príslušnom formáte. Na číslo sa prevedú len požadované hodnoty a potom sa hodnoty načítajú do zoznamu, ktorý sa odovzdá do riadku. V Pythone je v rámci obsluhy vlákien len typ Queue, schopný zabezpečiť bezpečnu komunikáciu medzi vláknami; ak sa nepoužíva na výmenu údajov medzi vláknami v programe, program môže zamrznúť. 
@@ -93,16 +97,15 @@ def get_read_state(self):
             self.data_queue.put([pitch, roll, yaw, tof, bat]) 
         except Exception as e: 
             self.LOGGER.error(e) 
-            break
 \end{mypython} 
 Počas riadenia máte tiež možnosť čítať stav tak, že pošlete do vlákna dotaz ako príkaz, na ktorý odpovie prostredníctvom spojenia UDP. Tieto dotazové slová poskytujú rovnaké stavy senzorov ako čítanie stavu (napr. : "akcelerácia?", "rýchlosť?", "batéria?", "tof?" ...). Zvažovalo sa aj použitie tejto funkcie, ale testy ukázali, že táto metóda poskytuje menej spoľahlivé výsledky. Táto komunikácia, na rozdiel od čítania stavu, spomaľuje a preťažuje ostatné funkcie dronu, pretože na reakciu na ne musí zabezpečiť samostatnú procesorovú kôru. Keďže teda nemôžeme získať spoľahlivé rezultáty ani s obsluhou vlákien, táto funkcia nie je pre naše účely užitočná. 
 
-Obraz z kamery, ktorý je pre túto úlohu nevyhnutný, sa tiež vysiela cez UDP, pričom sa otvorí server 0.0.0.0 cez port 11111. Keďže veľkosť zakódovaných údajov obrazu je väčšia ako maximálna veľkosť užitočného zaťaženia prenosu UDP, obrazové údaje dron prenáša v blokoch po 1460 bajtov, z ktorých posledný blok je menší ako 1460 bajtov. Vysielaný obraz je možné po prijatí zobraziť pomocou balíka OpenCV. Balíky kodekov ffmpeg a libh264decoder uvedené v oficiálnej dokumentácii DJI-SDK preto v tomto prípade nie sú potrebné, testovanie programu prebieha pod operačným systémom MacOS. 
+Obraz z kamery, ktorý je pre túto úlohu nevyhnutný, sa tiež vysiela cez UDP, pričom sa otvorí server 0.0.0.0 cez port 11111 \citep{Virbora2022}. Keďže veľkosť zakódovaných údajov obrazu je väčšia ako maximálna veľkosť užitočného zaťaženia prenosu UDP, obrazové údaje dron prenáša v blokoch po 1460 bajtov, z ktorých posledný blok je menší ako 1460 bajtov. Vysielaný obraz je možné po prijatí zobraziť pomocou balíka OpenCV. Balíky kodekov ffmpeg a libh264decoder uvedené v oficiálnej dokumentácii DJI-SDK preto v tomto prípade nie sú potrebné, testovanie programu prebieha pod operačným systémom MacOS \citep{Virbora2022}. 
 Ovládacie inštrukcie SDK možno rozdeliť do troch skupín: 
 \begin{enumerate}
 \item inštrukcie na riadenie 
 \begin{enumerate}
-    \item vrátenie "ok", ak sú splnené 
+    \item vrátenie 'ok', ak sú splnené 
     \item "error" alebo chybové hlásenie, ak nie je 
 \end{enumerate}
 \item inštrukcie na čítanie 
@@ -111,26 +114,27 @@ Ovládacie inštrukcie SDK možno rozdeliť do troch skupín:
 \end{enumerate}
 \item ovládanie nastavením parametrov 
 \begin{enumerate}
-    \item vrátenie "ok", ak sú splnené 
-    \item "error" alebo chybové hlásenie, ak nie je 
+    \item vrátenie 'ok', ak sú splnené 
+    \item 'error' alebo chybové hlásenie, ak nie je 
 \end{enumerate}
 \end{enumerate}
 
 
 
-Dronovi sa pošle príkaz "\pyth{takeoff}" (vzlet), vzlietne, pristane na príkaz "\pyth{land}" (pristátie), príkazy "\pyth{streamon}" (zapnutie) a "\pyth{streamoff}" (vypnutie) na prepnutie streamovania videa. Samotný dron je možné ovládať podľa smeru a súčasne príkazom "\pyth{go x y z speed}". V tomto prípade sa dron bude pohybovať zadanou rýchlosťou vzhľadom na danú polohu v smere určenom tromi súradnicami. Presnosť tohto ovládania sa rovná rozmerom dronu, takže sa nemôže pohybovať o menej ako 20 centimetrov \citep{TelloSDK}. 
+Dronovi sa pošle príkaz "\pyth{takeoff}" (vzlet), vzlietne, pristane na príkaz "\pyth{land}" (pristátie), príkazy "\pyth{streamon}" (zapnutie) a "\pyth{streamoff}" (vypnutie) na prepnutie streamovania videa. Samotný dron je možné ovládať podľa smeru a súčasne príkazom "\pyth{go x y z speed}" (Obrázok 3-3). V tomto prípade sa dron bude pohybovať zadanou rýchlosťou vzhľadom na danú polohu v smere určenom tromi súradnicami. Presnosť tohto ovládania sa rovná rozmerom dronu, takže sa nemôže pohybovať o menej ako 20 centimetrov \citep{TelloSDK}. 
 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=.55\textwidth,angle=0]{figure 3-3.pdf}
     \caption{Smery definované pri ovládaní dronu pomocou SDK.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
     \label{o:3-3}
-
 \end{figure}  
 Firmvér poskytuje aj možnosť ovládať dron v oblúku: zadaním ďalších dvoch bodov so súradnicami x, y, z vzhľadom na aktuálnu polohu dronu opíše nimi definovaný oblúk, ak je polomer oblúka v rozmedzí 0,5 až 10 metrov.
 
 Pre túto úlohu je na základe testov s dronom najvhodnejším spôsobom riadenia tzv. RC riadenie, ktoré patrí do skupiny 3 spôsobov riadenia. Rýchlosti dronu v smeroch x, y, z a odklonu možno nastaviť príkazom "\pyth{rc x y z yaw}". S celočíselnými hodnotami od -100 do 100. (Rýchlosť yaw je tu tiež vyjadrená v súradnicovom systéme bal offset). Takto môžete dokonca vykresliť krivku odoslaním príkazov s danou frekvenciou za predpokladu, že hodnoty rýchlosti parametrickej krivky sú en- tované ako kontrola vzorkovaním s rovnakou frekvenciou. Pri tomto režime riadenia možno dosiahnuť menšie posuny ako pri už spomínaných príkazoch "go x y z speed". 
-Do 2. skupiny inštrukcií patria inštrukcie, ktoré sa pýtajú na údaje zo senzorov. Napríklad aktuálne nastavenú rýchlosť, nabitie batérie, čas letu, nadmorskú výšku, zrýchlenie a uhlovú rýchlosť možno načítať z palubného ovládača dronu. Tieto sa nepoužívajú z dôvodu nespoľahlivej čitateľnosti, ktorá bola spomenutá vyššie.
+Do 2. skupiny inštrukcií patria inštrukcie, ktoré sa pýtajú na údaje zo senzorov. Napríklad aktuálne nastavenú rýchlosť, nabitie batérie, čas letu, nadmorskú výšku, zrýchlenie a uhlovú rýchlosť možno načítať z palubného ovládača dronu. Tieto sa nepoužívajú z dôvodu nespoľahlivej čitateľnosti, ktorá bola spomenutá vyššie \citep{TelloSDK}.
 
 \subsection{Umiestnenie dronu}
 Na zabezpečenie presného a spoľahlivého ovládania dronov je nevyhnutné optimálne umiestnenie dronov a značkovačov Aruco. Drony by mali byť umiestnené na otvorenom priestranstve s minimom prekážok a jasnou viditeľnosťou na značky. Značky by mali byť umiestnené tak, aby umožňovali maximálne pokrytie záujmovej oblasti a zároveň boli ľahko zistiteľné kamerou dronu.
@@ -150,12 +154,14 @@ Preto sa vybrali značky ArUco, na základe ktorých možno merať relatívny po
 \subsubsection{Používanie značkovačov aruco}
 Funkcie potrebné na generovanie značiek ArUco nájdete v balíku prídavných modulov OpenCV-Contrib. Ich umiestnenie si vyžaduje kalibráciu kamery, ktorú možno vykonať aj pomocou kalibračného algoritmu v OpenCV na základe štúdie Z. Zhanga \citep{888718} odhadom parametrov kamery. 
 
-Na kalibráciu potrebujete šachovnicu s dĺžkami strán, číslami riadkov a stĺpcov jej políčok. Na základe týchto údajov algoritmus vygeneruje teoretickú mapu vnútorných rohových bodov štvorcov a potom na základe vzoriek kamery vypočíta vnútorné a vonkajšie vlastnosti kamery v transformačných maticiach. Matica fotoaparátu obsahuje päť vnútorných vlastností fotoaparátu vrátane ohniskovej vzdialenosti, pomeru strán obrazového snímača a hlavného bodu dierkovej komory mod- elu. Získava sa aj matica skreslenia objektívu spojená s nelineárnymi vnútornými vlastnosťami, ktorú možno použiť na odstránenie súdkovitého a poduškovitého skreslenia na okrajoch obrazu. Vonkajšie (vonkajšie) vlastnosti kamery sú tiež opísané transformačnou maticou, ktorá realizuje prevod zo súradníc reálneho 3D priestoru na 3D súradnice kamery. Matica aplikuje homogénnu transformáciu: posun do stredu (počiatku) snímača kamery o vektor T a rotáciu o maticu rotácie R. 
+Na kalibráciu potrebujete šachovnicu s dĺžkami strán, číslami riadkov a stĺpcov jej políčok. Na základe týchto údajov algoritmus vygeneruje teoretickú mapu vnútorných rohových bodov štvorcov a potom na základe vzoriek kamery vypočíta vnútorné a vonkajšie vlastnosti kamery v transformačných maticiach. Matica fotoaparátu obsahuje päť vnútorných vlastností fotoaparátu vrátane ohniskovej vzdialenosti, pomeru strán obrazového snímača a hlavného bodu dierkovej komory mod- elu. Získava sa aj matica skreslenia objektívu spojená s nelineárnymi vnútornými vlastnosťami, ktorú možno použiť na odstránenie súdkovitého a poduškovitého skreslenia na okrajoch obrazu. Vonkajšie (vonkajšie) vlastnosti kamery sú tiež opísané transformačnou maticou, ktorá realizuje prevod zo súradníc reálneho 3D priestoru na 3D súradnice kamery(Obrázok 3-5). Matica aplikuje homogénnu transformáciu: posun do stredu (počiatku) snímača kamery o vektor T a rotáciu o maticu rotácie R. 
 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=.90\textwidth,angle=0]{figure 3-4.pdf}
     \caption{Tradičná kalibrácia pomocou vzoru šachovnice. a) Rutiny OpenCV dokážu odhaliť všetky rohy šachovnice. b) Rohy nemožno priradiť k príslušným bodom na vzore šachovnice, ak vzor nie je úplne zachytený.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
     \label{o:3-4}
 \end{figure}  
 
@@ -163,6 +169,8 @@ Na kalibráciu potrebujete šachovnicu s dĺžkami strán, číslami riadkov a s
     \centering
     \includegraphics[width=.90\textwidth,angle=0]{figure 3-5.pdf}
     \caption{Schéma procesu kalibrácie.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
     \label{o:3-5}
 \end{figure}  
 
@@ -173,44 +181,44 @@ Jedným z najčastejších zdrojov chýb pri meraní kamerou je súdkovité skre
 Pri používaní značkovačov Aruco na určovanie polohy dronov je potrebné dodržiavať niekoľko dôležitých pravidiel, aby sa zabezpečili presné a spoľahlivé výsledky. Tu je niekoľko pokynov pre umiestnenie značiek \citep{Marut2019}:
 \begin{enumerate}
 
-\item \textbf{Dostatočný počet značiek}: Na presné sledovanie polohy a orientácie dronu je dôležité použiť dostatočný počet značiek. To pomôže zabezpečiť, aby boli značky vždy viditeľné z pohľadu dronu, aj keď sa dron rýchlo pohybuje.
+\item \textbf{Dostatočný počet značiek}: Na presné sledovanie polohy a orientácie dronu je dôležité použiť dostatočný počet značiek. To pomôže zabezpečiť, aby boli značky vždy viditeľné z pohľadu dronu, aj keď sa dron rýchlo pohybuje;
 
-\item \textbf{Značky umiestnite do mriežky}: Umiestnenie značiek do pravidelnej mriežky pomôže zabezpečiť ich rovnomerné rozloženie a viditeľnosť z viacerých uhlov. To môže tiež pomôcť znížiť pravdepodobnosť zákrytov alebo iných problémov, ktoré by mohli narušiť sledovanie.
+\item \textbf{Značky umiestnite do mriežky}: Umiestnenie značiek do pravidelnej mriežky pomôže zabezpečiť ich rovnomerné rozloženie a viditeľnosť z viacerých uhlov. To môže tiež pomôcť znížiť pravdepodobnosť zákrytov alebo iných problémov, ktoré by mohli narušiť sledovanie;
 
-\item \textbf{Vyber veľkosti značiek}: Veľkosť použitých značiek bude závisieť od vzdialenosti, z ktorej sa na ne bude pozerať. Napríklad, ak bude dron lietať relatívne blízko značiek, môžete použiť menšie značky. Ak však bude dron vo väčšej vzdialenosti, možno budete musieť použiť väčšie značky, aby ste zabezpečili viditeľnosť.
+\item \textbf{Vyber veľkosti značiek}: Veľkosť použitých značiek bude závisieť od vzdialenosti, z ktorej sa na ne bude pozerať. Napríklad, ak bude dron lietať relatívne blízko značiek, môžete použiť menšie značky. Ak však bude dron vo väčšej vzdialenosti, možno budete musieť použiť väčšie značky, aby ste zabezpečili viditeľnosť;
 
-\item \textbf{Reflexný alebo priehľadný povrch}: Reflexné alebo priehľadné povrchy môžu narušiť detekciu markerov tým, že spôsobujú odrazy alebo lomy, ktoré skresľujú vzhľad markera. Aby ste sa vyhli tomuto problému, vyberte si miesto na umiestnenie značky, ktoré je bez reflexných alebo priehľadných povrchov.
+\item \textbf{Reflexný alebo priehľadný povrch}: Reflexné alebo priehľadné povrchy môžu narušiť detekciu značiek tým, že spôsobujú odrazy alebo lomy, ktoré skresľujú vzhľad značky. Aby ste sa vyhli tomuto problému, vyberte si miesto na umiestnenie značky, ktoré je bez reflexných alebo priehľadných povrchov;
 
-\item V zornom poli dronu musí byť vždy prítomný aspoň jeden marker, aby sa zabezpečilo, že dron môže nepretržite sledovať svoju polohu a orientáciu.
+\item V zornom poli dronu musí byť vždy prítomný aspoň jedna značka, aby sa zabezpečilo, že dron môže nepretržite sledovať svoju polohu a orientáciu;
 
-\item Keď sa markery časom zistia a stratia, systém použije polohu a orientáciu predchádzajúceho markera na odhad aktuálnej polohy a trajektórie dronu, kým sa nezistí nový marker.
+\item Keď sa značky časom zistia a stratia, systém použije polohu a orientáciu predchádzajúceho značky na odhad aktuálnej polohy a trajektórie dronu, kým sa nezistí novu značku.
 \end{enumerate}
 
 
 \subsection{Prvé testy polohovania pomocou značiek}
 Na testovanie sa použili štyri značky 7x7 ArUco s dĺžkou strany 0,0957 m z knižnice DICT-7x7-100. K dispozícii sú aj značky s plochami 4x4, 5x5 a 6x6, ale vyššie rozlíšenie knižnice 7x7 umožňuje presnejšie určovanie polohy. V každej knižnici je k dispozícii až 1024 rôznych značiek, čo by malo stačiť na poskytnutie informácií potrebných na riadenie dronu.
 
-Odporúča sa používať viac ako jeden marker, pretože systém dokáže spriemerovať z viacerých hodnôt, takže spriemerovaním možno získať presnejšie výsledky, jednoducho odfiltrovaním akýchkoľvek odľahlých hodnôt. Okrem toho, ak je v zornom poli dronu niekoľko značiek, je menší problém, ak sa jedna z nich stratí, pretože stále môže čítať hodnoty z ostatných. V prvom experimente boli značky umiestnené kolmo na kameru dronu, vertikálne k stene, ako je znázornené na fotografii na obrázku 10. Cieľom tohto testu bolo zistiť, ako dobre dokáže softvér ukladať údaje, ktoré sa približujú realite.
+Odporúča sa používať viac ako jedna značka, pretože systém dokáže spriemerovať z viacerých hodnôt, takže spriemerovaním možno získať presnejšie výsledky, jednoducho odfiltrovaním akýchkoľvek odľahlých hodnôt. Okrem toho, ak je v zornom poli dronu niekoľko značiek, je menší problém, ak sa jedna z nich stratí, pretože stále môže čítať hodnoty z ostatných. V prvom experimente boli značky umiestnené kolmo na kameru dronu, vertikálne k stene, ako je znázornené na fotografii na obrázku 10. Cieľom tohto testu bolo zistiť, ako dobre dokáže softvér ukladať údaje, ktoré sa približujú realite.
 
 Súbor bodov vľavo na obrázku 11 ukazuje, že súbor meracích bodov bol úspešne sledovaný hneď po opísaní štvorca dronom a dokonca aj po zakreslení jednej z jeho uhlopriečok, a vpravo ukazuje, že aj zmena výšky bola pomocou značiek zistená s vynikajúcou presnosťou. Priesečník čiernych osí je počiatok pohybu dronu. Body na obrázku vyznačené červenou farbou sú skutočné hodnoty a zelená krivka je B-spline krivka prispôsobená bodu nastavenému funkciou splprep() v podadresári interpolate balíka Scipy dostupného v programovacom jazyku Python. Parameter spresnenia funkcie bol po niekoľkých experimentoch na základe dokumentácie \citep{scipy-docs} zvolený na hodnotu s=0,1, čo al- ready dostatočne aproximuje množinu bodov odfiltrovaním zašumených bodov. Nakoniec sme vo finálnej verzii programu použili na filtrovanie dátových bodov Kalmanov filter namiesto metódy B-spline interpolácie, pričom sme mysleli na budúcu implementáciu v reálnom čase a adaptívnejšie správanie Kalmanovho filtra. 
 
 Jediná korekcia, ktorú bolo potrebné aplikovať na experimentálnu sadu bodov, bolo negatívne otočenie bodov o 10,5° okolo osi x, inak by sa Z-koordináty bodov zväčšili, keď by sa približovali k značkám, a to aj pri konštantnej výške. Je to spôsobené uhlom kamery od vodnej hladiny, pričom pri priblížení k markerom sa zistila vyššia poloha. (Toto bude neskôr zbytočné kvôli korekcii uhlového natočenia značiek.)
 
-V tomto nastavení bude dron poskytovať skutočné hodnoty posunutia len vtedy, ak je rovina kamery (okrem uhla poklesu) rovnobežná s rovinou značiek. Ak sa poloha od tejto odchýli, dron bude udávať nesprávne hodnoty. Hodnoty posunutia sa musia odhadnúť s prihliadnutím na uhly natočenia, inak nemôžeme previesť hodnoty vektorov translácie značiek ArUco do súradnicového systému prvej videnej značky, ktorý chceme použiť ako globálny súradnicový systém.  Hodnoty vektorov zadané funkciou cv2.aruco.estimatePoseSingleMarkers() balíka OpenCV sú zadané v súradnicovom systéme kamery, ktoré je potom potrebné previesť do súradnicového systému markerov. 
+V tomto nastavení bude dron poskytovať skutočné hodnoty posunutia len vtedy, ak je rovina kamery (okrem uhla poklesu) rovnobežná s rovinou značiek. Ak sa poloha od tejto odchýli, dron bude udávať nesprávne hodnoty. Hodnoty posunutia sa musia odhadnúť s prihliadnutím na uhly natočenia, inak nemôžeme previesť hodnoty vektorov translácie značiek ArUco do súradnicového systému prvej videnej značky, ktorý chceme použiť ako globálny súradnicový systém.  Hodnoty vektorov zadané funkciou cv2.aruco.estimatePoseSingleMarkers() balíka OpenCV sú zadané v súradnicovom systéme kamery, ktoré je potom potrebné previesť do súradnicového systému značiek. 
 
 \subsubsection{Vyhodnotenie testu a očakávania od systému}
 Na základe prvých testov sa oplatí ďalej skúmať túto možnosť určovania polohy, pretože dokáže vypočítať polohu dronu v reálnom čase s relatívne malým počtom transformácií. Bohužiaľ, nemôžeme využiť grafickú akceleráciu balíka CUDA, ktorú poskytuje spoločnosť Nvidia, pretože funkcie balíka OpenCV-Python neboli všetky pridané do knižnice cv2.cuda v jazyku Python. Spomalí to spracovanie obrazu, ale aj tak spôsobí väčšie oneskorenie operácie kvôli 1,5...2 sekundovému oneskoreniu kamerového obrazu prenášaného dronom. 
 
-Očakáva sa, že chyba merania metódy bude približne 0,05 m pri zväčšenej veľkosti značiek a vhodnom počte značiek. V dôsledku konverzií medzi súradnicovými systémami markerov však môžeme očakávať aj chybu driftu, ktorá sa zvyšuje so vzdialenosťou od markera reprezentujúceho globálnu súradnicu v dôsledku nepresnosti transformácií medzi súradnicovými systémami.
+Očakáva sa, že chyba merania metódy bude približne 0,05 m pri zväčšenej veľkosti značiek a vhodnom počte značiek. V dôsledku konverzií medzi súradnicovými systémami značiek však môžeme očakávať aj chybu driftu, ktorá sa zvyšuje so vzdialenosťou od značky reprezentujúceho globálnu súradnicu v dôsledku nepresnosti transformácií medzi súradnicovými systémami.
 
 \subsection{Princíp, spresnenie a robustnosť polohovania}
 Počas vývojovej a testovacej fázy kamerového programu sme namiesto palubnej kamery dronu Tello použili webovú kameru. Dôvodom bola predovšetkým obmedzená životnosť batérie dronu, ktorá by sťažila testovanie a zdokonaľovanie programu na dlhší čas. Namiesto toho sme použili webovú kameru namontovanú na stabilnej platforme, ktorá simulovala pohľad kamery dronu, a testovali sme výkon programu v rôznych svetelných podmienkach, vzdialenostiach a orientáciách. Keď sme boli s výkonom programu spokojní, preniesli sme ho do dronu Tello a podľa potreby sme vykonali drobné úpravy.
 Program bol napísaný s použitím funkcií poskytovaných v balíku OpenCV ArUco, napríklad:
 \begin{enumerate}
-\item \textbf{Detekcia a rozpoznávanie značiek}: Na detekciu a rozpoznanie značiek Aruco vo videokanáli dronu používame funkciu cv2.detectMarkers(). Táto funkcia prijíma obraz, slovník Aruco a parametre na detekciu a vracia zistené značky a ich príslušné ID.
-\item \textbf{Transformácie medzi súradnicovými systémami značky a kamery}: Po zistení a rozpoznaní značiek musíme transformovať ich polohu v obraze (v pixelových súradniciach) na ich polohu v súradnicovom systéme kamery (v milimetroch). Toto sa vykoná pomocou funkcie cv2.aruco.estimatePoseSingleMarkers(), ktorá prijme detekované značky, veľkosť značiek, maticu kamery a koeficienty skreslenia a vráti vektory rotácie a translácie, ktoré predstavujú polohu každej značky v súradnicovom systéme kamery.
-\item \textbf{Spresnenie pozícií značiek}: Keďže zistené polohy značiek nie sú vždy presné, musíme ich spresniť pomocou subpixelovej presnosti. To sa vykonáva pomocou funkcie cv2.cornerSubPix(), ktorá prijíma obraz, zistené rohy značky a parametre pre subpixelové spresnenie a vracia spresnené rohové pozície.
-\item \textbf{Robustnosť polohovania}: Aby sme zabezpečili robustnosť a presnosť polohy dronu, používame v obraze viacero značiek a vykonávame priemerovanie ich polôh. To pomáha znížiť vplyv šumu a chýb pri detekcii a rozpoznávaní značiek.
+\item \textbf{Detekcia a rozpoznávanie značiek}: Na detekciu a rozpoznanie značiek Aruco vo videokanáli dronu používame funkciu cv2.detectMarkers(). Táto funkcia prijíma obraz, slovník Aruco a parametre na detekciu a vracia zistené značky a ich príslušné ID;
+\item \textbf{Transformácie medzi súradnicovými systémami značky a kamery}: Po zistení a rozpoznaní značiek musíme transformovať ich polohu v obraze (v pixelových súradniciach) na ich polohu v súradnicovom systéme kamery (v milimetroch). Toto sa vykoná pomocou funkcie cv2.aruco.estimatePoseSingleMarkers(), ktorá prijme detekované značky, veľkosť značiek, maticu kamery a koeficienty skreslenia a vráti vektory rotácie a translácie, ktoré predstavujú polohu každej značky v súradnicovom systéme kamery;
+\item \textbf{Spresnenie pozícií značiek}: Keďže zistené polohy značiek nie sú vždy presné, musíme ich spresniť pomocou subpixelovej presnosti. To sa vykonáva pomocou funkcie cv2.cornerSubPix(), ktorá prijíma obraz, zistené rohy značky a parametre pre subpixelové spresnenie a vracia spresnené rohové pozície;
+\item \textbf{Robustnosť polohovania}: Aby sme zabezpečili robustnosť a presnosť polohy dronu, používame v obraze viacero značiek a vykonávame priemerovanie ich polôh. To pomáha znížiť vplyv šumu a chýb pri detekcii a rozpoznávaní značiek;
 \item \textbf{Transformácia perspektívy a bodu (PnP)}: Funkcia cv2.aruco.solvePnP() sa používa na odhad pózy (polohy a orientácie) značky v 3D priestore. Táto funkcia prijíma ako vstup 2D súradnice značky na obrázku, 3D súradnice značky v reálnom svete a maticu kamery, ktorá obsahuje vlastné parametre kamery (ohniskovú vzdialenosť, hlavný bod atď.) \citep{9549863}.
 \end{enumerate}
 
@@ -218,6 +226,8 @@ Program bol napísaný s použitím funkcií poskytovaných v balíku OpenCV ArU
     \centering
     \includegraphics[width=.90\textwidth,angle=0]{figure 3-6.pdf}
     \caption{Súradnicový systém kamery a značky interpretovaný programom OpenCV.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: Popescu, Dragos. (2018). Automatic rough alignment for key components in laser driven experiments using fiducial markers. Journal of Physics: Conference Series. 1079. 012013. 10.1088/1742-6596/1079/1/012013.)}
     \label{o:3-6}
 \end{figure}  
 % Popescu, Dragos & Cernaianu, Mihail & Dumitrache, I.. (2018). Automatic rough alignment for key components in laser driven experiments using fiducial markers. Journal of Physics: Conference Series. 1079. 012013. 10.1088/1742-6596/1079/1/012013. 
@@ -252,10 +262,10 @@ Na výpočet transformácie medzi 3D svetovými súradnicami objektu a jeho 2D o
 
 Algoritmus PnP vyžaduje nasledujúce vstupy:
 \begin{enumerate}
-\item Súbor 3D bodov objektu vyjadrených v súradnicovom systéme vzhľadom na kameru.
-\item Súbor 2D obrazových bodov, ktoré zodpovedajú projekcii 3D bodov objektu na 2D obrazovú rovinu.
-\item Vlastná matica kamery, ktorá opisuje vnútorné parametre kamery, ako je ohnisková vzdialenosť a hlavný bod.
-\item Voliteľne vonkajšia matica kamery, ktorá opisuje polohu a orientáciu kamery v 3D priestore.
+\item Súbor 3D bodov objektu vyjadrených v súradnicovom systéme vzhľadom na kameru;
+\item Súbor 2D obrazových bodov, ktoré zodpovedajú projekcii 3D bodov objektu na 2D obrazovú rovinu;
+\item Vlastná matica kamery, ktorá opisuje vnútorné parametre kamery, ako je ohnisková vzdialenosť a hlavný bod;
+\item Voliteľne vonkajšia matica kamery, ktorá opisuje polohu a orientáciu kamery v 3D priestore;
 \item Algoritmus PnP vypočíta rotáciu a transláciu objektu vzhľadom na kameru pomocou nelineárnej optimalizačnej metódy. Algoritmus minimalizuje chybu reprojekcie, čo je rozdiel medzi projektovanými 3D bodmi a zodpovedajúcimi 2D obrazovými bodmi.
 \end{enumerate}
 
@@ -271,11 +281,11 @@ Vzorec pre transformáciu PnP je nasledujúci:
 \end{equation}
 kde:
 \begin{enumerate}
-\item $\text{objectPoints}$ je pole 3D bodov v súradnicovom systéme objektu.
-\item $\text{imagePoints}$ je pole zodpovedajúcich 2D obrazových bodov.
-\item $\text{cameraMatrix}$ je vlastná matica kamery.
-\item $\text{distCoeffs}$ sú koeficienty skreslenia kamery.
-\item $rvec$ je vektor natočenia objektu vzhľadom na kameru.
+\item $\text{objectPoints}$ je pole 3D bodov v súradnicovom systéme objektu;
+\item $\text{imagePoints}$ je pole zodpovedajúcich 2D obrazových bodov;
+\item $\text{cameraMatrix}$ je vlastná matica kamery;
+\item $\text{distCoeffs}$ sú koeficienty skreslenia kamery;
+\item $rvec$ je vektor natočenia objektu vzhľadom na kameru;
 \item $tvec$ je vektor translácie objektu vzhľadom na kameru.
 \end{enumerate}
 
@@ -314,6 +324,8 @@ Keďže neexistuje všeobecná dohoda o konvencii pre Eulerove uhly, musíme def
     \centering
     \includegraphics[width=.65\textwidth,angle=0]{figure 3-8.pdf}
     \caption{Hlavné nápravy lietadla podľa normy DIN 9300.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
     \label{o:3-8} 
 \end{figure} 
 
@@ -386,27 +398,38 @@ kde $\theta$ je veľkosť vektora rotácie a $u_x$, $u_y$ a $u_z$ sú zložky je
 
 Takto získame polohu kamery v súradnicovom systéme značky.
 
-\textbf{5. Preveďme polohu kamery} v súradnicovom systéme markera do globálneho súradnicového systému pripočítaním polohy markera v globálnom súradnicovom systéme:
+\textbf{5. Preveďme polohu kamery} v súradnicovom systéme značky do globálneho súradnicového systému pripočítaním polohy značky v globálnom súradnicovom systéme:
 \begin{equation}
-P_{global} = P_{značka} + R_{marker}^{-1}(-R^{-1}t_{vec})
+P_{global} = P_{značka} + R_{značka}^{-1}(-R^{-1}t_{vec})
 \end{equation}
 
-kde $P_{značka}$ je poloha značky v globálnom súradnicovom systéme a $R_{značka}$ je rotačná matica, ktorá definuje orientáciu značky v globálnom súradnicovom systéme.
+kde $P_{značka}$ je poloha značky v globálnom súradnicovom systéme a $R_{marker}$ je rotačná matica, ktorá definuje orientáciu značky v globálnom súradnicovom systéme.
 
 Výsledný vektor $P_{global}$ je poloha kamery v globálnom súradnicovom systéme.
 
 V súhrne sú kroky na prevod polohy kamery do globálneho súradnicového systému nasledovné:
 
 Výpočet matice rotácie R z vektora rotácie rvec pomocou Rodriguesovho vzorca.
-Výpočet inverznej matice rotácie R na získanie matice rotácie reprezentujúcej súradnicový systém markera vzhľadom na súradnicový systém kamery.
+Výpočet inverznej matice rotácie R na získanie matice rotácie reprezentujúcej súradnicový systém značky vzhľadom na súradnicový systém kamery.
 Vypočítame inverzný vektor translácie tvec
 
 
 \subsection{Webové sokety s komunikáciou s dronom}
 Webové sokety sú populárnym mechanizmom na komunikáciu v reálnom čase medzi klientom a serverom cez web. V kontexte riadenia dronov sa webové sokety môžu použiť na vytvorenie trvalého obojsmerného kanála medzi pozemnou stanicou (klientom) a dronom (serverom), ktorý umožňuje výmenu príkazov, telemetrických údajov a videoprenosov v reálnom čase.
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.70\textwidth,angle=0]{figure 3-9.pdf}
+    \caption{Štandardný režim fungovania webových soketov.}
+    \captionsetup{font=footnotesize, justification=centering, skip=5pt}
+    \caption*{(Zdroj: vlastné spracovanie)}
+    \label{o:3-9}
+\end{figure}  
+
 \subsubsection{Architektúra}
-Typická architektúra komunikačného systému dronu založeného na webových zásuvkách pozostáva z troch hlavných komponentov: pozemnej stanice, dronu a web-socket servera. Pozemná stanica je zodpovedná za generovanie používateľských príkazov a prijímanie telemetrických údajov a video prúdov z dronu. Dron je zodpovedný za vykonávanie príkazov a zachytávanie telemetrických údajov a video prúdov. Webový socketový server funguje ako middleware medzi pozemnou stanicou a dronom, spracováva komunikačný protokol a preposiela správy v reálnom čase.
+Typická architektúra komunikačného systému dronu založeného na webových zásuvkách pozostáva z troch hlavných komponentov: pozemnej stanice, dronu a web-socket servera. Pozemná stanica je zodpovedná za generovanie používateľských príkazov a prijímanie telemetrických údajov a video prúdov z dronu. Dron je zodpovedný za vykonávanie príkazov a zachytávanie telemetrických údajov a video prúdov. Webový socketový server funguje ako middleware medzi pozemnou stanicou a dronom, spracováva komunikačný protokol a preposiela správy v reálnom čase (obrázok 3-9).
+
+
 
 \subsubsection{Komunikačný protokol}
 Komunikačný protokol pre systém dronu založený na webo-socket pozostáva z dvoch typov správ: príkazových správ a telemetrických správ.

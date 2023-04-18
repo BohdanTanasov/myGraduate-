@@ -1,0 +1,18 @@
+\babel@toc {slovak}{}\relax 
+\contentsline {section}{\numberline {1}Funkcia programu}{1}{section.1}%
+\contentsline {section}{\numberline {2}Analýza riešenia}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Webová aplikácia React}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Backend Node.js}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Detekcia značiek Aruco}{2}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Asus Dashboard}{3}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Inštalácia, konfigurácia a používanie}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Požiadavky}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Installation}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Konfigurácia}{5}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Použitie}{5}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Popis hlavnych modulov}{6}{section.4}%
+\contentsline {section}{\numberline {5}Riešenie problémov}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Drony sa nepripájajú k systému}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Prístrojová doska nezobrazuje pozície dronov}{7}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Systém nereaguje alebo padá}{7}{subsection.5.3}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }Zoznam použitej literatúry}{8}{subsection.5.3}%

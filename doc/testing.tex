@@ -5,9 +5,9 @@
 Na vyhodnotenie výkonnosti programu dronu pri detekcii značiek a výpočte ich polohy sa uskutočnilo niekoľko simulačných experimentov s použitím vlastného simulačného prostredia.
 
 Experimentálna zostava
-Simulačné prostredie bolo vytvorené a pozostávalo z miestnosti s niekoľkými markermi Aruco umiestnenými na známych pozíciách. Program pre drony bol spustený na Tinkerboard a výstup programu bol zaznamenaný na analýzu.
+Simulačné prostredie bolo vytvorené a pozostávalo z miestnosti s niekoľkými značkami Aruco umiestnenými na známych pozíciách. Program pre drony bol spustený na Tinkerboard a výstup programu bol zaznamenaný na analýzu.
 
-Experiment 1: Detekcia markerov
+Experiment 1: Detekcia značiek
 
 Cieľom prvého experimentu bolo vyhodnotiť presnosť a robustnosť dronového programu pri detekcii značiek Aruco v rôznych svetelných podmienkach a v rôznych vzdialenostiach. Simulované prostredie bolo upravené tak, aby obsahovalo značky umiestnené v rôznych vzdialenostiach a za rôznych svetelných podmienok.
 
@@ -35,7 +35,7 @@ Cieľom experimentu je zmerať presnosť a účinnosť skupinového ovládania v
 Experimentálne usporiadanie:
 Miestnosť mala rozmery 10x10x3 metre a obsahovala tri značky Aruco (ID: 4, 9, 15) umiestnené v rôznych vzdialenostiach od dronu. Program dronu bol spustený na simulovanej tabuli Tinkerboard v prostredí Unity3D a výstup programu bol zaznamenaný na analýzu.
 
-Experiment 1: Detekcia markerov
+Experiment 1: Detekcia značiek
 V tomto experimente sme sa zamerali na vyhodnotenie presnosti a robustnosti programu dronu pri detekcii značiek Aruco v rôznych svetelných podmienkach a v rôznych vzdialenostiach. Na simuláciu rôznych svetelných podmienok sa jas simulovaného prostredia menil medzi 100 % a 50 %. Na simuláciu rôznych vzdialeností boli značky umiestnené vo vzdialenosti 1 m, 3 m a 5 m od dronu.
 
 Spustil sa program dronu a zaznamenal sa počet správne rozpoznaných značiek. Experiment sa opakoval päťkrát pre každú svetelnú podmienku a vzdialenosť. Výsledky experimentu sú uvedené v nasledujúcej tabuľke:
@@ -59,11 +59,11 @@ Spustil sa program dronu a zaznamenal sa počet správne rozpoznaných značiek.
         5m & 50\% & 0 & 0 & 0 & 0 & 0 & 0\\ [1ex] 
         \hline
        \end{tabular}
-       \caption{Výsledky experimentu detekcie značiek pre každý marker}
+       \caption{Výsledky experimentu detekcie značiek}
         \label{table:1}
 \end{table}
 Ako vidno z tabuľky, program dronu si viedol dobre pri detekcii značiek vo vzdialenosti 1 m a pri jase 100\%, pričom všetky značky boli správne detekované vo všetkých pokusoch. S rastúcou vzdialenosťou alebo klesajúcim jasom však presnosť detekcie klesala. Pri vzdialenosti 5 m a jase 50\% klesla presnosť detekcie na 80\%.
-Na ďalšie zhodnotenie odolnosti programu dronov sa experiment zopakoval s markermi umiestnenými v rôznych orientáciách a za rôznych svetelných podmienok. Výsledky ukázali, že dronový program dokázal presne detegovať značky aj pri ich pootočení až o 30 stupňov, ale presnosť detekcie sa znížila, keď boli značky silne zakryté prekážkami v prostredí.
+Na ďalšie zhodnotenie odolnosti programu dronov sa experiment zopakoval s značkami umiestnenými v rôznych orientáciách a za rôznych svetelných podmienok. Výsledky ukázali, že dronový program dokázal presne detegovať značky aj pri ich pootočení až o 30 stupňov, ale presnosť detekcie sa znížila, keď boli značky silne zakryté prekážkami v prostredí.
 Celkovo výsledky experimentu 1 ukazujú, že program dronu je schopný detegovať značky Aruco s vysokou presnosťou za väčšiny svetelných podmienok a vzdialeností, ale jeho výkon môže byť ovplyvnený silným zakrytím alebo slabým osvetlením. Tieto zistenia budú podkladom pre vývoj programu dronov a pomôžu zlepšiť jeho detekčné schopnosti v náročných prostrediach.
 
 \subsection{Výpočet polohy}
@@ -103,7 +103,7 @@ Program dronu sa spustil a jeho výstup sa analyzoval s cieľom určiť presnos�
 
 Ako je vidieť z tabuľky, vypočítané polohy dronu boli vo všeobecnosti presné, s chybami od 0,01 do 0,04 metra v smeroch X a Y a od 0,01 do 0,05 metra v smere Z. Najväčšia chyba sa vyskytla v prípade značky 1, ktorá sa nachádzala v najväčšej vzdialenosti od dronu.
 
-Celkovo výsledky tohto experimentu naznačujú, že program pre drony je schopný presne vypočítať polohu dronu vzhľadom na markery Aruco, aj keď sú markery umiestnené v rôznych vzdialenostiach a polohách.
+Celkovo výsledky tohto experimentu naznačujú, že program pre drony je schopný presne vypočítať polohu dronu vzhľadom na značky Aruco, aj keď sú značky umiestnené v rôznych vzdialenostiach a polohách.
 
 \subsection{Režim viacerých dronov}
 Experimentálne usporiadanie:
@@ -116,7 +116,7 @@ Program pre drony sa spustil pre každý dron a jeho výstup sa analyzoval s cie
 
 Výsledky:
 V nasledujúcej tabuľke sú uvedené výsledky experimentu v režime viacerých dronov:
-
+ 
 \begin{table}[h!] 
     \centering
         \begin{tabular}{|c| c| c| c| c| c |} 
@@ -141,9 +141,9 @@ V nasledujúcej tabuľke sú uvedené výsledky experimentu v režime viacerých
         \label{table:1}
 \end{table}
 
-V tabuľke sú uvedené ID dronu, ID markera, vzdialenosť, jas a chyba polohy pre každý pokus. Chyba polohy je rozdiel medzi vypočítanou polohou a skutočnou polohou markera a uvádza sa v centimetroch.
+V tabuľke sú uvedené ID dronu, ID značky, vzdialenosť, jas a chyba polohy pre každý pokus. Chyba polohy je rozdiel medzi vypočítanou polohou a skutočnou polohou značky a uvádza sa v centimetroch.
 
-Výsledky naznačujú, že program dronov fungoval[] dobre v režime viacerých dronov s nízkou priemernou chybou polohy 1,7 cm. Program dokázal presne vypočítať polohu dronov vzhľadom na markery aj v prítomnosti iných dronov v tom istom prostredí. Výsledky dokazujú potenciál programu pre drony na použitie v aplikáciách s viacerými dronmi, ako je pátranie a záchrana alebo sledovanie.
+Výsledky naznačujú, že program dronov fungoval[] dobre v režime viacerých dronov s nízkou priemernou chybou polohy 1,7 cm. Program dokázal presne vypočítať polohu dronov vzhľadom na značky aj v prítomnosti iných dronov v tom istom prostredí. Výsledky dokazujú potenciál programu pre drony na použitie v aplikáciách s viacerými dronmi, ako je pátranie a záchrana alebo sledovanie.
 
 \subsection{Kontrola skupiny dronov}
 Cieľom štvrtého experimentu je vyhodnotiť účinnosť webovej aplikácie pri riadení skupiny dronov. Simulačné prostredie je upravené tak, aby zahŕňalo viacero dronov a webová aplikácia sa používa na ovládanie dronov ako skupiny.
@@ -177,7 +177,7 @@ V nasledujúcej tabuľke sú uvedené výsledky skupinového kontrolného experi
         3 & 130 & 15 \\ 
         \hline
        \end{tabular}
-       \caption{Výsledky experimentu detekcie značiek pre každý marker}
+       \caption{Výsledky experimentu detekcie značiek}
         \label{table:1}
 \end{table}
 
