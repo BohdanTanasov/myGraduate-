@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.10)  17 APR 2023 22:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.10)  18 APR 2023 17:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -803,7 +803,7 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 \tf@lof=\write7
 \openout7 = `DP-Hlavna-cast-2022-2023-Tanasov.lof'.
 
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 223.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 222.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [11] (./DP-Hlavna-cast-2022-2023-Tanasov.lot)
@@ -819,14 +819,14 @@ No file DP-Hlavna-cast-2022-2023-Tanasov.gls.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.259 \include{uvod}
+l.258 \include{uvod}
                      [1
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.259 \include{uvod}
+l.258 \include{uvod}
                      [2]
 \openout2 = `formulacia.aux'.
 
@@ -843,7 +843,7 @@ l.19
 pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.261 \include{formulacia}
+l.260 \include{formulacia}
                            [4]
 \openout2 = `analyza.aux'.
 
@@ -1188,13 +1188,13 @@ Package rerunfilecheck Info: File `DP-Hlavna-cast-2022-2023-Tanasov.out' has not
 Here is how much of TeX's memory you used:
  28898 strings out of 478268
  531643 string characters out of 5846347
- 1128811 words of memory out of 5000000
+ 1128807 words of memory out of 5000000
  46222 multiletter control sequences out of 15000+600000
  547747 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,17n,91p,1317b,2045s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtto10.pfb>
-Output written on DP-Hlavna-cast-2022-2023-Tanasov.pdf (86 pages, 13507580 bytes).
+Output written on DP-Hlavna-cast-2022-2023-Tanasov.pdf (86 pages, 13507601 bytes).
 PDF statistics:
  1379 PDF objects out of 1440 (max. 8388607)
  1046 compressed objects within 11 object streams

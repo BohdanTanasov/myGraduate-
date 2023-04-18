@@ -283,7 +283,7 @@ vložený originál zadávacieho listu!
 
 \bigskip
 
-Vyhlasujem, \v{z}e som bakalársku pr\'acu vypracoval(a) samostatne
+Vyhlasujem, \v{z}e som diplomovu pr\'acu vypracoval(a) samostatne
 s~pou\v{z}it\'{\i}m uvedenej odbornej literat\'ury.
 
 \bigskip
