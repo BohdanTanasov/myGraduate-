@@ -45,3 +45,4 @@
 \contentsline {subsection}{\numberline {6.1}Návrhy na ďalší vývoj}{67}{subsection.6.1}%
 \contentsline {section}{\numberline {7}Z\'aver}{68}{section.7}%
 \contentsline {section}{\hbox to\@tempdima {\hfil }Zoznam použitej literatúry}{69}{section*.29}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }Zoznam pr\'iloh}{73}{section*.30}%

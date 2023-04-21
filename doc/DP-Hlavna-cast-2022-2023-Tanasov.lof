@@ -4,7 +4,7 @@
 \contentsline {figure}{\numberline {2\,--\,3}{\ignorespaces Model virtuálnej kamery. (a) Model virtuálnej kamery systému stereovízie založeného na plochej prizme. (b) Modifikovaný model dierkovej virtuálnej kamery systému stereovízie založeného na voľnej prizme.\relax }}{9}{figure.caption.9}%
 \contentsline {figure}{\numberline {2\,--\,4}{\ignorespaces Vľavo: Tradičné stereofónne nastavenie predpokladá, že aspoň dva uhly pohľadu zachytávajú scénu v rovnakom čase. Vpravo: Uvažujeme o nastavení, pri ktorom sa kamera aj objekt pohybujú.\relax }}{11}{figure.caption.10}%
 \contentsline {figure}{\numberline {2\,--\,5}{\ignorespaces Pravdepodobnosť detekcie značky v závislosti od jej oblasti na obrázku pre 3 rôzne uhly naklonenia: 0°, 45°, 70°.\relax }}{13}{figure.caption.11}%
-\contentsline {figure}{\numberline {2\,--\,6}{\ignorespaces Závislosť vplyvu veľkosti oblasti značky na chybe pri zisťovaní jej polohy.\relax }}{13}{figure.caption.12}%
+\contentsline {figure}{\numberline {2\,--\,6}{\ignorespaces Závislosť vplyvu veľkosti oblasti značky na chybe pri zisťovaní jej polohy.\relax }}{14}{figure.caption.12}%
 \contentsline {figure}{\numberline {3\,--\,1}{\ignorespaces Dron DJI Tello a jeho komponenty.\relax }}{16}{figure.caption.13}%
 \contentsline {figure}{\numberline {3\,--\,2}{\ignorespaces Schéma návrhu systému: Webová aplikácia vytvorená pomocou React komunikuje s backendovým serverom Node.js, ktorý posiela príkazy a prijíma telemetrické údaje z dronov pripojených k ASUS Tinkerboard.\relax }}{18}{figure.caption.14}%
 \contentsline {figure}{\numberline {3\,--\,3}{\ignorespaces Smery definované pri ovládaní dronu pomocou SDK.\relax }}{23}{figure.caption.15}%

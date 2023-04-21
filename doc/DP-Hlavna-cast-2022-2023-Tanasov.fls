@@ -1019,6 +1019,9 @@ INPUT zaver.aux
 INPUT ./literatura.aux
 INPUT literatura.aux
 INPUT literatura.aux
+INPUT ./prilohy.aux
+INPUT prilohy.aux
+INPUT prilohy.aux
 OUTPUT DP-Hlavna-cast-2022-2023-Tanasov.aux
 INPUT /usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1429,6 +1432,16 @@ INPUT ./literatura.tex
 INPUT literatura.tex
 INPUT ./literatura.tex
 INPUT literatura.tex
+INPUT ./prilohy.tex
+INPUT ./prilohy.tex
+INPUT ./prilohy.tex
+OUTPUT prilohy.aux
+INPUT ./prilohy.tex
+INPUT ./prilohy.tex
+INPUT ./prilohy.tex
+INPUT prilohy.tex
+INPUT ./prilohy.tex
+INPUT prilohy.tex
 INPUT DP-Hlavna-cast-2022-2023-Tanasov.aux
 INPUT ./uvod.aux
 INPUT uvod.aux
@@ -1457,6 +1470,9 @@ INPUT zaver.aux
 INPUT ./literatura.aux
 INPUT literatura.aux
 INPUT literatura.aux
+INPUT ./prilohy.aux
+INPUT prilohy.aux
+INPUT prilohy.aux
 INPUT ./DP-Hlavna-cast-2022-2023-Tanasov.out
 INPUT ./DP-Hlavna-cast-2022-2023-Tanasov.out
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc

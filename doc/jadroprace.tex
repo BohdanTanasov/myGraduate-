@@ -136,12 +136,12 @@ Na spracovanie sa môžu odovzdať len údaje značiek, ktoré nemajú žiadny z
 
 V triede markers sú vlastnosti značiek, ktoré ste doteraz videli, uložené v rôznych zoznamoch, ako napríklad:
 \begin{itemize}
-    \item \textbf{ids}: počet už použitých značiek
-    \item \textbf{tvec\_origin}: "markerorigos" v globálnom súradnicovom systéme
-    \item \textbf{rvec\_origin}: otočenie súradnicového systému značiek vzhľadom na globálny
-    \item \textbf{dRot}: matica rotácie od danéj značky ku globálnemu.
-    \item \textbf{allow\_use}: pomocná premenná, ktorá umožňuje použitie danéj značky pri priemerovaní, akonáhle sa zozbiera dostatočný počet vzoriek, môže sa započítať
-    \item \textbf{tvec\_min, tvec\_max}: pomocné premenné na filtrovanie výpočtu priemeru
+    \item \textbf{ids}: počet už použitých značiek;
+    \item \textbf{tvec\_origin}: "markerorigos" v globálnom súradnicovom systéme;
+    \item \textbf{rvec\_origin}: otočenie súradnicového systému značiek vzhľadom na globálny;
+    \item \textbf{dRot}: matica rotácie od danéj značky ku globálnemu;
+    \item \textbf{allow\_use}: pomocná premenná, ktorá umožňuje použitie danéj značky pri priemerovaní, akonáhle sa zozbiera dostatočný počet vzoriek, môže sa započítať;
+    \item \textbf{tvec\_min, tvec\_max}: pomocné premenné na filtrovanie výpočtu priemeru.
 \end{itemize}
 
 Funkcia appendMarker() volaná počas detekcie značiek ArUco pridá nové značky do triedy značiek. Za počiatok berie značku s číslom 1 a na základe jej Eulerovho uhlového natočenia okolo osi x určí, či ide o horizontálnu alebo vertikálnu značku. Ukladá tiež základné hodnoty uhlových rotácií z čítania stavov dronu, to sa stáva počiatkom Eulerových uhlov. Ukladá príslušnú jednu z dvoch orientácií do matice, ktorá bude relevantná pre indexovanie po spracovaní invertovaním smerov vektora translácie.
